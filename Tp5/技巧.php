@@ -1,0 +1,2 @@
+<?php
+$_SERVER['HTTP_REFERER']

@@ -1,0 +1,128 @@
+﻿body{
+    background-color:#eeeeee;
+    padding:0px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+
+} 
+
+#logo{
+  color: #3ba7f3;
+  margin: 0px;
+  padding:5px;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 50px;
+  text-align: left top;
+}
+#stitle{
+  color: #cc99cc;
+  margin: 0px;
+  width: auto;
+  padding:5px;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 40px;
+ float:right;
+}
+nav{
+  background-color: #99ccff;
+  margin: 0px;
+  font-size: 30px;
+  }
+nav ul{
+    margin: 0px;
+  list-style-type: none;
+    padding: 5px 0px 5px 0px;
+}
+nav ul li{
+  display: inline;
+  margin:0px 50px 0px 50px;
+  padding: 0px;
+  
+}
+nav ul li a:link,nav ul li a:link{
+  color:#cc0099;
+  border-bottom: none;
+  font-weight: bold;
+  text-decoration: none;
+}
+nav ul li.selected{
+  color: #66ff00;
+}
+asideleft a:link,asideright a:link{
+  color:#ff3333;
+  border-bottom: none;
+  font-weight: bold;
+  text-decoration: none;
+}
+.selected{
+  color: #66ff00;
+}
+
+#logo a:link{
+ color:#3ba7f3;
+  border-bottom: none;
+  text-decoration: none;    
+}  
+asideleft{
+  display: table-cell;
+  padding:15px;
+  border-style: solid;
+  border-color: #cccccc;
+  border-width: thin;
+  width: 200px;
+  text-align:center;
+  font-size: 20px;
+
+}
+asideleft ul{
+  list-style-type: none;
+  text-align: left;
+}
+asideright{
+  display: table-cell;
+  padding:15px;
+  border-style: solid;
+  border-color: #cccccc;
+  border-width: thin;
+  width: 200px;
+  text-align:center;
+  font-size: 20px;
+}
+artical{
+   display: table-cell;
+   vertical-align: top;
+   text-align: center;
+   font-size: 120%;
+   width:850px;
+   padding: 15px;
+}
+sheet{
+    margin: 5px 20px 0px 20px;
+    padding:10px;
+    text-align: center;
+}
+#tableContainer{
+  dispaly: table;
+  border-spacing: 10px;
+}
+#tableRow{
+  display: table-row;
+}
+
+footer{
+  text-align: center;
+  background-color:#b196e3;
+   margin: 0px;
+  padding: 2px;
+  font-size: %90;
+}
+.smallindex{
+  letter-spacing: %150;
+  font-weight: normal;
+}  
+.indexinf{
+    letter-spacing: %150;
+  font-weight: normal;
+  font-size: %80;
+  text-size:%80;
+}

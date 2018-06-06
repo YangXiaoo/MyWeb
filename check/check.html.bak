@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>THEE</title>
+  <link rel="stylesheet" href="home.css" >
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+<script src="js.js"></script>
+
+<script src="home.js"></script>
+
+<body>
+
+<div class="container-fluid" > 
+<!--巨幕-->
+<div class="jumbotron text-center">
+  <h1>Hello, welcom! </h1>
+  <p>This is a website created by a man named YX, who is studing at uestc as a postgraduate. </p>
+  <div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login" data-whatever="@mdo">Login</button>
+
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="login">Login</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <form  action="Life/diary/diary.html"  >
+          <div class="form-group text-left">
+            <label for="recipient-name" class="control-label">Name</label><span id="nameinfo"></span>
+            <input type="text" class="form-control" id="name" placeholder="账户">
+          </div>
+          <div class="form-group text-left ">
+            <label for="inputPassword" class="control-label">Password</label><span id="passwordinfo"></span>
+        <input type="password" id="password" class="form-control" placeholder="密码" required>
+          </div>
+
+           <div class="checkbox text-left">
+          <label>
+            <input type="checkbox" id="rememberacount" value="remember-me"> Remember me
+          </label>
+        </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" id="sign" class="btn btn-primary"  onsubmit="return check(this.form)">Sign in</button>
+      </div>
+              </form>
+      </div>
+    </div>
+  </div>
+</div>
+ </div>
+</div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Nav</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Life<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="Life/diary/diary.html">日记</a></li>
+            <li><a href="#">账本(暂无)</a></li>
+            <li><a href="#">吉他(暂无)</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Study<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="study/Study.html">StudyPage</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="study/study/HTML&CSS.html">HTML&CSS</a></li>
+            <li><a href="study/study/JavaScript.html">JavaScript</a></li>
+            <li><a href="study/study/jQuery.html">jQuery</a></li>
+            <li><a href="study/study/PHP.html">PHP</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">近期安排(暂无)</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">进行中(暂无)</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">已完成(暂无)</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tool<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">电影(暂无)</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">软件(暂无)</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">其它(暂无)</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">友情链接<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Bootstrap</a>
+            </li>
+
+            
+            <li role="separator" class="divider"></li>
+            <li><a href="#">微信</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">邮箱</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">留言</a></li>
+          </ul>
+        </li>
+      </ul>
+</div>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+
+
+    <div class="row "><!--响应式栅格!-->
+      <div class="col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <h1>Here...</h1>
+        <p>这里应该说些什么的，但是想了又想，这个网站只是用来个人学习的，没有什么需要展示的。所以......</p>
+
+      </div>
+      <div class="col-md-4 col-xs-12 col-sm-4 col-lg-4">
+        <h1>Profile</h1>
+        <p>
+          此网站建立的目的在于将所学的HTML&CSS, JavaScript, PHP, MySQL等语言用来实际验证，本网站是移动优先。目前网站的主要内容为Life(生活)，Study（学习）,Work（工作-暂无）,Tool（工具）四个板块。生活板块中的日记内容需要登录才能查看，但目前所学内容还未能验证密码登录，只能在浏览器中输入该板块的链接。
+        </p>
+        <p>本站于2017年12月在阿里云申请备案，备案内容为个人网站，网站名为“组传四”（该名称并未代表任何含义，因第一次申请所用的名称有误，所以任意取了一个）。本网站每月流量10G，服务器内存200M，数据库内存20M（不会用诶）。</p>
+      </div>
+      <div class="col-md-4  col-xs-12 col-sm-4 col-lg-4">
+        <h1>About</h1>
+        <p>暂无。</p>
+      </div>
+    </div>
+
+<!-- Button trigger modal -->
+
+
+<footer ><small>
+         &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+</small>
+</footer>
+
+
+ </div> 
+</body>
+</html>

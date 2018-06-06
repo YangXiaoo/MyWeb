@@ -1,0 +1,16 @@
+﻿footer{
+  text-align: center;
+  padding: 0px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  margin: 0px;
+}
+h1{
+  text-align: center;
+}
+p{
+  text-indent: 2em;
+}
+#info{
+   padding:  0px 5px 0px 5px;
+}

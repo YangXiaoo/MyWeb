@@ -1,0 +1,191 @@
+﻿<!doctype html>
+<html>
+
+       <head>
+            <meta charset="utf-8">
+
+            <title>STUDY</title>    
+
+            <link type="text/css" rel="stylesheet" href="dom.css" >
+
+      </head>
+
+<body>
+             
+<span id="logo"><a href="../../../../index.html">INVOLUTE</a></span>
+<span id="stitle">program</span>
+
+
+<nav>
+<ul id="nn">
+  <li><a href="../../../../index.html#logo ">HOME</a></li>
+  <li ><a href="../../../HTML&CSS/html&css.html">HTML&CSS</a></li>
+  <li><a href="../../javascript.html">JavaScript</a></li>
+  <li>C语言 </li>
+  <li>MatLab</li>
+  </ul>
+</nav>
+
+
+<center>
+<div id="tableContainer">
+<div id="tableRow">
+
+<asideleft >
+<h3>HTML&CSS</h3>
+
+<indexone>基础知识<br></indexone>
+<indexone>
+<a href="../../../HTML&CSS/html&css.html">练习</a></indexone><br>
+<p id="bottomline"></p>
+
+<h3>JavaScript</h3>
+<indexone><a href="../../javascript.html">练习</a></br>
+<indextwo>
+<span ><a href="dom.html">->domscrpting</a></span><br>
+<span ><a href="表单提交/sheetorder.html">->表单提交</a></span><br>
+</indextwo>
+<p id="bottomline"></p>
+ <h3> C语言</h3>
+<span基础知识<br>
+ <span> 数据结构<br>
+  <span>程序<br></span>
+<p id="bottomline"></p>
+ <h3>MatLab</h3>
+<span>基础知识<br>
+  <span>论文图表<br>
+ <span> 程序<br>
+ <span> 练习<br></span>
+
+</asideleft>
+
+
+<artical>
+
+<!--<h1>DOM</h1>
+<p title="a gentle reminder ">BIAOTI</p>
+<ul id="purchase">
+<li>beans</li>
+<li class="sale">milk</li>
+<li class="important sale">coca</li>
+</ul>-->
+<h1>图片库</h1>
+<!--<ul>
+  <li>
+    <a href="../../../../PIC/1.jpg" title="大树" onclick="showPic(this);return false;">大树</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/2.jpg" title="不二" onclick="showPic(this);return false;">不二</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/3.jpg" title="学校" onclick="showPic(this);return false;">学校</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/4.jpg" title="心" onclick="showPic(this);return false;">心</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/11.jpg" title="阿霸" onclick="showPic(this); return false;">阿霸</a>
+  </li>
+   <li>
+    <a href="../../../../PIC/9.jpg" class="popup">>>>>>分离JavaScript展示新图片</a>
+  </li>
+</ul>
+以下是将JavaScript与HTML分离-->
+<ul id="imagegallery">
+  <li>
+    <a href="../../../../PIC/1.jpg" title="大树-《龙猫》宫崎骏">大树</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/2.jpg" title="不二兔子-安东尼">不二</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/3.jpg" title="学校">学校</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/4.jpg" title="小心心心心心心心心心心" >心</a>
+  </li>
+  <li>
+    <a href="../../../../PIC/11.jpg" title="阿霸-卡通人物" >阿霸</a>
+  </li>
+   <li>
+    <a href="../../../../PIC/9.jpg" title="无该图片文字描述" class="popup">分离JavaScript展示新图片</a>
+  </li>
+</ul>
+<p align=center>
+<img src="../../../../PIC/12.jpg"  id="placeholder" title="图片所在区域" ></p>
+<p>图片信息描述：<span id="description">期待。</span></p>
+<!--  target="_black"  链接在新窗口中打开 -->
+<p id="bottomline"></p>
+<h1>动态创建标记</h1>
+<div id="add">
+</div>
+<p id="addtwo"></p>
+<p> 上上一句话是用insertBefore()完成的，详细程序查看源代码。</p>
+<p id="bottomline"></p>
+<h1>Ajax</h1>
+<div id="addfour">
+</div>
+<p id="bottomline"></p>
+<h1>CSS-DOM</h1>
+<p>此页面导航鼠标略过时颜色变化用js编写的</p>
+<p id="bottomline"></p>
+<h1>JavaScript实现动画效果</h1>
+<span id="move">
+oooooooooo>
+</span>
+<p id="bottomline"></p>
+<h1>图片滑动</h1>
+<p>下面是四个人物头像</p>
+<ul id="linklist">
+<li><a href="../../../../PIC/13.png">第一个</a></li>
+<li><a href="../../../../PIC/13.png">第二个</a></li>
+<li><a href="../../../../PIC/13.png">第三个</a></li>
+<li><a href="../../../../PIC/13.png">第四个</a></li>
+</ul>
+
+</artical>
+
+
+<asideright  id="smallindex">
+<h3>LIFESTYLE</h3>
+<span>生活<br></span>
+<span>日记<br></span>
+<span>吉他<br></span>
+
+<h3>WORK</h3>
+<span>任务安排表<br></span>
+<span>正在做的任务<br></span>
+<span>已完成的任务<br></span>
+
+ <h3>STUDY</h3>
+  <span>ME<br></span>
+  <span>英语<br></span>
+  <span>数学<br></span>
+  <h3>TOOLS</h3>
+<span>基础知识<br></span>
+  <span>电脑软件<br></span>
+ <span> 网络资源<br></span>
+
+<h3>OTHERS</h3>
+ 
+</asideright>
+
+</div>
+</div>
+</center>
+
+
+<footer><small>
+         &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+</small>
+</footer>
+<script src="JavaScript/file.js"></script>
+<script src="JavaScript/addLoadEvent.js"></script>
+<script src="JavaScript/moveElement.js"></script>
+      </body>
+
+</html>
+
+   

@@ -1,0 +1,15 @@
+﻿footer{
+  text-align: center;
+  padding: 2px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+h1{
+  text-align: center;
+}
+p{
+  text-indent: 2em;
+}
+#info{
+   padding:  0px 5px 0px 10px;
+}

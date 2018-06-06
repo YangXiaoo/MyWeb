@@ -1,0 +1,27 @@
+{if isset($wconfig['theme']) && $wconfig['theme'] == 'rules' }
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col} rule_node">
+        <input type="checkbox" class="hide" name="{$wconfig.name}[]" value="" checked="checked" />
+        {volist name="optionList" id="vo"}
+        <p class='left{$vo.html[0]} {if $vo.html[0] == "3" } p_left{/if}' >
+        <label class="checkbox-inline">
+            <input type="checkbox" name="{$wconfig.name}[]" value="{$vo.value}" {$vo.checked} {$wconfig.disabled} class="minimal" > {$vo.html[1]}
+        </label>
+        </p>
+        {/volist}
+    </div>
+</div>
+{else /}
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <input type="checkbox" class="hide" name="{$wconfig.name}[]" value="" checked="checked" />
+        {volist name="optionList" id="vo"}
+        <label class="checkbox-inline">
+            <input type="checkbox" name="{$wconfig.name}[]" value="{$vo.value}" {$vo.checked} {$wconfig.disabled} class="minimal"> {$vo.html}
+        </label>
+        {/volist}
+    </div>
+</div>
+{/if}

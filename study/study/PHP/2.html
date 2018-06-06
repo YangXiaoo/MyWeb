@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>数据列表</title>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="../../../bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script language="javascript"> 
+function clear(){ 
+Source=document.body.firstChild.data; 
+document.open(); 
+document.close(); 
+document.body.innerHTML=Source; 
+} 
+</script> 
+  </head>
+
+  <body >
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Study.html">Study</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ">
+        <li><a href="../../../index.html">Home</a>
+        </li>
+
+        <li><a href="../../Study.html">Studypage <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li ><a href="../HTML&CSS.html">HTML&CSS</a>
+        </li>
+
+        <li  ><a href="../JavaScript.html">JavaScript</a>
+        </li>
+		<li><a href="../jQuery.html">jQuery</a>
+        </li>
+
+        <li class="active" ><a href="../PHP.html">PHP</a>
+        </li>
+         
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+
+      <div class="blog-header">
+      <div>
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">数据列表</h2>
+            <data class="blog-post-meta text-left">Dec, 2017 by <a href="#">yangxiao</a></data>
+            <h2>1. checked.php验证登录信息程序</h2>
+			<pre><code>
+&lt?php
+if ( ( $_POST['username'] != null ) && ( $_POST['password'] != null ) ) {
+   $userName = $_POST['username'];
+   $password = $_POST['password'];
+//session_start();//启用
+ $dbhost = 'localhost:3306';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '307231';          // mysql用户名密码
+           //数据库名称
+
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+{
+  die('连接错误: ' . mysqli_error($conn));
+}
+echo '连接成功&ltbr />';
+
+    mysqli_select_db($conn,'yangxiao');
+
+    $sql = "select * from user where `username` = '$userName' ";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($res);
+if ($row['password'] == $password) {
+       //密码验证通过，设置session，把用户名和密码保存在服务端
+       $_SESSION['username'] = $username;
+       $_SESSION['password'] = $password;
+
+       //最后跳转到登录后的欢迎页面 //注意：这里我们没有像cookie一样带参数过去
+       header('Location: page.php');
+}
+}	
+?>
+			</code></pre><hr>
+<h2>2. page.php数据列表</h2>
+			<pre><code>
+&lt!DOCTYPE html>
+&lthtml lang="zh-CN">
+&lthead>
+  &ltmeta http-equiv=“Content-Type”content=“text/html; charset=utf-8” />
+&lt/head>
+&ltbody>
+&ltdiv class="container">
+
+&lt?php
+include 'connection.php';
+
+$count_sql = 'select count(id) as c from user';
+
+$result = mysqli_query($conn, $count_sql);
+
+$data = mysqli_fetch_assoc($result);
+
+//得到总的用户数
+$count = $data['c'];
+
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+
+/*
+if (isset($_GET['page'])) {
+    $page = (int) $_GET['page'];
+} else {
+    $page = 1;
+}
+ */
+
+//每页显示数
+
+$num = 5;
+
+//得到总页数
+$total = ceil($count / $num);
+
+if ($page &lt= 1) {
+    $page = 1;
+}
+
+if ($page >= $total) {
+    $page = $total;
+}
+
+
+$offset = ($page - 1) * $num;
+
+$sql = "select id,username,createtime,createip from user order by id desc limit $offset , $num";
+
+$result = mysqli_query($conn, $sql);
+
+if ($result && mysqli_num_rows($result)) {
+
+    //存在数据则循环将数据显示出来
+
+    echo '&lth2>edit&lt/h2>';
+    echo '&lttable>&lttr>&lta href="login.html">add account&lt/a>&lt/tr>&lt/table>';
+   echo '&lttable border="1"  class="table table-bordered  table-hover table-striped table-condensed">
+   &lttr>&lttd>name&lt/td>
+   &lttd>data&lt/td>
+   &lttd>ip&lt/td>
+   &lttd>edit&lt/td>
+   &lttd>delet&lt/td>
+   &lt/tr>';
+
+    while ($row = mysqli_fetch_assoc($result)) {
+
+        echo '&lttr>';
+
+        echo '&lttd>' . $row['username'] . '</td>';
+        echo '&lttd>' . date('Y-m-d H:i:s', $row['createtime']) . '</td>';
+        echo '&lttd>' . long2ip($row['createip']) . '</td>';
+        echo '&lttd>&lta href="edit.php?id=' . $row['id'] . '">edit&lt/a></td>';
+        echo '&lttd>&lta href="delete.php?id=' . $row['id'] . '">delect&lt/a></td>';
+
+        echo '&lt/tr>';
+    }
+
+    echo '&lttr>&lttd colspan="5">&lta href="page.php?page=1">First page&lt/a> |&lta href="page.php?page=' . ($page - 1) . '">up&lt/a>  | &lta href="page.php?page=' . ($page + 1) . '">down&lt/a>|  &lta href="page.php?page=' . $total . '">last&lt/a> | page: ' . $page . '  |total' . $total . ' </td>
+	&lt/tr>';
+
+    echo '&lt/table>';
+
+} else {
+    echo '没有数据';
+}
+
+mysqli_close($conn);
+?>
+ &lt/div> 
+&lt/body>
+&lt/html>
+</code></pre>
+			<h2>3. connection.php连接数据库</h2>
+			
+	<pre><code>
+&lt?php
+include 'config.php';
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PWD, DB_NAME);
+if (mysqli_errno($conn)) {  
+	mysqli_error($conn);   
+	exit;
+	}
+	mysqli_set_charset($conn, DB_CHARSET);
+?>
+	</code></pre>	
+
+
+				<h2>4. config.php数据库配置</h2>
+			
+	<pre><code>
+&lt?php
+//数据库服务器
+define('DB_HOST', 'localhost');
+//数据库用户名
+define('DB_USER', 'root');
+//数据库密码
+define('DB_PWD', '307231');
+//库名
+define('DB_NAME', 'yangxiao');
+//字符集
+define('DB_CHARSET', 'utf8');
+?>
+	</code></pre>
+
+
+
+<h2>5. 数据编辑edit.php</h2>
+			<pre disabled="disabled"><code>
+&lt?php
+include 'connection.php';
+if (is_numeric($_GET['id'])) {
+
+   $id = (int) $_GET['id'];
+
+}
+
+$sql = "select id,username from user where id = " . $id;
+
+$result = mysqli_query($conn, $sql);
+
+$data = mysqli_fetch_assoc($result);
+
+?>
+
+
+&ltform action="update.php" method="post">
+
+   用户名：&ltinput type="text" name="username" value="&lt?php echo $data['username'];?>">&ltbr />
+
+   密码：&ltinput type="password" name="password">&ltbr />
+
+  &ltinput type="hidden" value="&lt?php echo $data['id'];?>" name="id" />
+
+   &ltinput type="submit" value="提交">
+
+&lt/form>
+&lt?php
+
+mysqli_close($conn);
+
+?>
+			</code></pre>
+           
+     				<h2>5. 数据上传update.php</h2>
+			
+	<pre><code>
+&lt?php
+include 'connection.php';
+
+$id = (int) $_POST['id'];
+
+if (trim($_POST['password'])) {
+
+    $password = trim($_POST['password']);
+
+    $sql = "update user set password='" . $password . "' where id = $id";
+
+} else {
+
+    echo '修改成功';
+}
+
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    echo '修改成功';
+}
+?>
+	</code></pre>
+      
+
+         
+		   <h2>6. 数据删除delete.php</h2>
+			
+	<pre><code>
+&lt?php
+
+include 'connection.php';
+
+if (is_array($_POST['id'])) {
+
+   $id = join(',', $_POST['id']);
+
+} elseif (is_numeric($_GET['id'])) {
+
+   $id = (int) $_GET['id'];
+
+} else {
+   echo '数据不合法';
+   exit;
+}
+
+$sql = "delete from user where id in($id)";
+
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+   echo '删除成功';
+} else {
+   echo '删除失败';
+}
+ header('Location: page.php' );
+?>
+	</code></pre>
+
+
+
+          </div><!-- /.blog-post -->
+
+
+          
+
+        </div><!-- /.blog-main -->
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>引用时请附带本网站主页链接：<a class="alert-link" href="www.lxxx.site">www.lxxx.site</a></p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="1.html">购物车</a></li>
+              <li><a href="2.html">数据列表</a></li>
+            </ol>
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4>Contanct me</h4>
+            <ol class="list-unstyled">
+              <li>
+
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myqq" data-whatever="@mdo">My QQ</button>
+                <div class="modal fade" id="myqq" tabindex="-1" role="dialog" aria-labelledby="myqq">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myqq">QQ 1270009836</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../../PIC/20.jpg" class="img-responsive" alt="1270009836">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+              </li><br>
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#wechat" data-whatever="@mdo">WeChat</button>
+                <div class="modal fade" id="wechat" tabindex="-1" role="dialog" aria-labelledby="wechat">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="wechat">WeChat number</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../../PIC/21.jpg" class="img-responsive" alt="1方丈">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li><br>
+
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#email" data-whatever="@mdo">My Email</button>
+                <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="email">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="email">Email address</h4>
+                 </div>
+
+                <div class="modal-body">
+                <h4>1270009836@qq.com</h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </div><hr>
+
+          <div class="sidebar-module">
+            <h4>旧链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="../../program.html">Program</a></li>
+              <li><a href="../../HTML&CSS/HTML&CSS.html">HTML&CSS</a></li>
+              <li><a href="../../JavaScript/javascript.html">JavaScript</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+    </footer>
+
+
+  </body>
+</html>

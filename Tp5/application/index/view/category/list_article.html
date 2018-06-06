@@ -1,0 +1,56 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$arctype.typename} - {:confv('title')}</title>
+<meta name="keywords" content="{$arctype.keywords}">
+<meta name="description" content="{$arctype.description}">
+{/block}
+
+{block name="pjax_container"}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="alert bg-white position">{:position($arctype['id'], '<i class="fa fa-home"></i> 首页')}</div>
+            
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    {notempty name="vo.litpic"}
+                    <img src="{$vo.litpic}" alt="{$vo.title}" title="{$vo.title}" />
+                    {/notempty}
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags">
+                    <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>
+                    
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>
+                {:flagPos($vo['flag'])}
+            </div>
+            {/volist}
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有公开数据！请<a href="{:url('Login/login')}" >登录</a>。</div>
+                </div>
+            </div>
+            {/empty}
+                      <div class="new-arc-box"></div>
+            <div class="x-mb-15">
+                <button class="btn btn-block btn-info" id="new-arc-btn" data-page="2"
+                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." >加载更多文章</button>
+            </div>
+        </div>
+        
+        <div class="col-sm-4 hidden-xs">
+            {include file="inc/arc_hot" /} 
+            {include file="inc/arc_category" /}
+            {include file="inc/flink" /}
+        </div>
+    </div>
+</section>
+{/block}

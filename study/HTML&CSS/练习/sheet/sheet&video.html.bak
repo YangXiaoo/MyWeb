@@ -1,0 +1,193 @@
+﻿<!doctype html>
+<html>
+
+       <head>
+            <meta charset="utf-8">
+
+            <title>STUDY</title>    
+
+            <link type="text/css" rel="stylesheet" href="sheet&video.css" >
+
+      </head>
+
+<body>
+             
+<span id="logo"><a href="../../../../index.html">INVOLUTE</a></span>
+<span id="stitle">program</span>
+
+
+<nav>
+<ul>
+  <li><a href="../../../../index.html#logo ">HOME</a></li>
+  <li class="titleselected"><sapn><a href="../../html&css.html">HTML&CSS</a></span></li>
+  <li>JavaScript</li>
+  <li>C语言 </li>
+  <li>MatLab</li>
+  </ul>
+</nav>
+
+
+<center>
+<div id="tableContainer">
+<div id="tableRow">
+
+<asideleft >
+<h3>HTML&CSS</h3>
+
+<indexone>基础知识<br></indexone>
+<indexone>
+<a href="../practice.html">练习</a></indexone><br>
+<indextwo>
+<span class="selected">>sheet&video</span><br>
+<span > <a href="../HTML表单/HTMLsheet.html">HTML表单</a></span><br>
+</indextwo>
+
+<h3>JavaScript</h3>
+<span>基础知识<br>
+  <span>练习<br></span>
+
+ <h3> C语言</h3>
+<span基础知识<br>
+ <span> 数据结构<br>
+  <span>程序<br></span>
+
+ <h3>MatLab</h3>
+<span>基础知识<br>
+  <span>论文图表<br>
+ <span> 程序<br>
+ <span> 练习<br></span>
+
+</asideleft>
+
+<artical>
+<h2>添加视频</h2>
+<p align=left> 代码: video controls autoplay(posterloop/*指定展示某一帧图片*/) loop/*循环播放*/ with="512" height="288" src="canon.mp4" id="video"/*添加一个标签*/ video </p>
+<p class="suojin">主流浏览器主要使用三种不同的视频格式：1.mp4容器；2.webM容器；3.Ogg容器<br>
+</p>
+
+<video controls loop  with="512" height="288" src="canon.mp4" id="video"></video>
+<h2>创建表格</h2>
+<center>
+<table>
+ <caption>2017年11月日历</caption>
+
+<tr> 
+  <th>日</th>
+  <th>一</th>
+  <th>二</th>
+  <th>三</th>
+  <th>四</th>
+  <th>五</th>
+  <th>六</th>
+</tr>
+<tr>
+  <td>29</td>
+  <td>30</td>
+  <td>31</td>
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+  <td>4</td>
+</tr> 
+<tr>
+  <td rowspan="2">5</td>
+  <td rowspan="2">6</td>
+  <td rowspan="2">7</td>
+  <td rowspan="2">8</td>
+  <td rowspan="2">9</td>
+  <td rowspan="2">10</td>
+  <td >11</td>
+</tr>
+<tr>
+
+  <td class="smalltext"><a href="https://baike.baidu.com/item/%E5%8F%8C%E5%8D%81%E4%B8%80%E8%B4%AD%E7%89%A9%E7%8B%82%E6%AC%A2%E8%8A%82/6811698?fr=aladdin&fromid=8098742&fromtitle=%E5%8F%8C%E5%8D%81%E4%B8%80" title="百度百科">双11</a></td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>13</td>
+  <td>14</td>
+  <td>15</td>
+  <td>16</td>
+  <td>17</td>
+  <td>18</td>
+</tr>
+<tr>
+  <td>19</td>
+  <td>20</td>
+  <td>21</td>
+  <td>22</td>
+  <td>23</td>
+  <td>24</td>
+  <td>25</td>
+</tr>
+<tr>
+  <td>26</td>
+  <td>27</td>
+  <td>28</td>
+  <td>29</td>
+  <td>30</td>
+  <td>1</td>
+   <td>
+<table>
+ <tr>
+  <th>国历</th>
+   <td>2</td>
+</tr>
+<tr>
+  <th>农历</th>
+   <td class="smalltext">十月十五</td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+</table>
+</center>
+
+  <p align=left>border-collapse: collapse;</p>
+</artical>
+
+
+<asideright  class="smallindex">
+<h3>LIFESTYLE</h3>
+<span>生活<br></span>
+<span>日记<br></span>
+<span>吉他<br></span>
+
+<h3>WORK</h3>
+<span>任务安排表<br></span>
+<span>正在做的任务<br></span>
+<span>已完成的任务<br></span>
+
+ <h3>STUDY</h3>
+  <span>ME<br></span>
+  <span>英语<br></span>
+  <span>数学<br></span>
+  <h3>TOOLS</h3>
+<span id="smallindex">基础知识<br></span>
+  <span>电脑软件<br></span>
+ <span> 网络资源<br></span>
+
+<h3>OTHERS</h3>
+ 
+</asideright>
+
+</div>
+</div>
+</center>
+
+
+<footer><small>
+         &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+</small>
+</footer>
+
+
+      </body>
+
+</html>
+
+   

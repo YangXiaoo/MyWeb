@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JavaScript</title>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--javascript.js by me!-->
+    <script type="javascript.js"></script>
+  </head>
+
+  <body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../Study.html">Study</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">Home</a>
+        </li>
+
+        <li><a href="../Study.html">Studypage <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li ><a href="HTML&CSS.html">HTML&CSS</a>
+        </li>
+
+        <li  class="active"  ><a href="JavaScript.html">JavaScript</a>
+        </li>
+		<li ><a href="jQuery.html">jQuery</a>
+        </li>
+
+        <li><a href="PHP.html">PHP</a>
+        </li>
+         
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">JavaScript</h1>
+        <p class="lead blog-description">书山有路勤为径，学海无涯苦作舟。</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">JavaScript</h2><small>高级程序设计</small>
+            <data class="blog-post-meta text-left">Dec 11, 2017 by <a href="#">yangxiao</a></data>
+
+            <p>一个完整的JavaScript实现由下列三个完成：
+              <ul>
+                <li>核心(ECMAScript)</li>
+                <li>文档对象模型(DOM)</li>
+                <li>浏览器对象模型(BOM)</li>
+            </ul>  
+            </p>
+            <hr>
+
+            <h2>1.基本概念</h2>
+            <h3>1.1数据类型</h3>
+            <p>ECMAScript有五种简单的数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。其中还有一种复杂的数据类型-Object，Object本质上是由一组无序的明值对组成。</p>
+            <h4>typeof操作</h4>
+            <p>对一个值使用typeof操作符可能返回下列某个字符串：</p>
+            <ul>
+              <li>"undefined":如果这个值未定义；</li> 
+              <li>"boolean":如果这个值是布尔值；</li>
+              <li>"string":如果这个值是字符串；</li>
+              <li>"number":如果这个值是数值；</li>
+              <li>"object":如果这个值是对象或Null；</li>
+              <li>"function":如果这个值是函数；</li>
+            </ul>
+            <h3>1.2语句</h3>
+            <h4>1.2.1 for-in语句</h4>
+            <p>for-in语句是一种精准迭代语句，可以用来枚举对象的属性。以下是用法：</p>
+            <pre class="text-danger">
+<code>
+  for(var propName in window){
+      document.write(propName);
+  }
+</code>
+            </pre>
+            <p>用for-in循环显示BOM中window对象的所有属性。每次执行循环时，都会想window对象存在的一个属性名赋予变量propName,直到所有属性被枚举一遍为止。与for语句类似，控制语句中的var操作符也不是必须的。</p>
+
+
+            
+            <h4>1.2.2 label语句</h4>
+            <p>该语句在代码中添加标签，以便将来使用。以下是用法：</p>
+            <pre class="text-danger">
+<code>
+  var num = 0;
+  outermost:
+  for (var i=0; i&lt;10; i++){
+      for (var j=0; j<10; j++){
+          if (i == 5 && j == 5){
+              break outermost; <span  class="text-primary">//continue outermost;</span>
+        }
+          num++;
+    }
+}
+alert(num);                <span class="text-primary"> //55 or 95  <span>
+</code>
+            </pre>
+            <p>label由break或continue引用。</p>
+
+            <h4>1.2.3 with语句</h4>
+            <p>将代码的作用域设置到一个特定的对象中。以下是用法：</p>
+            <pre class="text-danger">
+<code>
+  var a = location.search.substring{1};
+  var hostName = location.hostname;
+  var url = location.href;
+</code>
+            </pre>
+            <p>上面代码都包含location对象，如果使用with语句，则可以改写代码如下：</p>
+            <pre class="text-danger">
+<code>
+  with(location){
+      var a = search.substring{1};
+      var hostName = hostname;
+      var url = href;
+    }
+</code>
+            </pre>
+            <h2>2.引用类型</h2>
+            <h3>2.1 Object类型</h3>
+            <p>创建Object实例的方式有两种，一种是使用new操作符后跟Object构造函数。另一种是使用字面量，该语法应用更广泛，因为语法要求的代码量少，而且能给人封装数据的感觉。是向函数传递大量可选参数的首选方式。</p>
+           <pre class="text-danger">
+<code>
+  var person = {
+      "name" : "Young",<span class="text-primary">//等价于name : "Young",</span>
+      "age"  : 22,
+      5 : true
+};
+<span  class="text-primary">//或者（不推荐）：</span>
+  var person = {};
+      person.name = "Young";
+      person.age = 22;
+</code>
+            </pre>
+            <p>使用对象字面量语法时，属性名也可以使用字符串。访问属性对象时一般使用点表示法，也可以是方括号表示法（不推荐）。</p>
+
+            <h3>2.2 Array类型</h3>
+            <p>转换方法：toString();</p>
+            <h4>2.2.1 栈方法</h4>
+            <p><red>push()</red>方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后的数组长度。而<red>pop()</red>方法则是从数组末尾移除最后一项，减少数组的length长度，然后返回移除的项。</p>
+             <h4>2.2.2 列队方法</h4>
+            <p><red>shift()</red>方法移除数组中的第一项并返回该项，同时数组长度减一。而<red>unshift()</red>方法则是在数组前端添加任意个项并返回新数组的长度。</p>
+            <h4>2.2.2 重排序方法</h4>
+            <ul>
+              <li><red>reverse():</red> 反转数组项的顺序。</li>
+            <li><red>sort():</red> 默认情况下，该方法按升序排列数组的项-即最小的项位于最前面，最大的值排在最后面。该方法调用toStrig()得到字符串并进行比较排序。但该方法不是最佳，用一个比较函数：</li>
+          </ul>
+          <pre class="text-danger">
+<code>
+  function compare (val1,val2){
+      if (val1 < val2){
+          return -1;
+    }
+      else if (val1 > val2){
+          return 1;
+    }
+      else{
+          return 0;
+    }
+}
+
+  var value = {0, 1, 5, 10, 15};
+  value.sort(compare);
+  alter(value); <span class="text-primary">//0,1,5,10,15</span>
+</code>
+          </pre>
+          <h4>2.2.4 操作方法</h4>
+            <ul>
+              <li><red>contat( ): </red>先创建当前数组的一个副本，然后将接收到的参数添加到这个副本的末尾，最后返回新构建的数组。</li>
+              <li><red>slice( ):</red> 接受一个或两个参数，即返回项的起始和结束位置。只有一个参数情况下，<strong>返回</strong>指定位置到当前数组的末尾所有项。若有两个参数，返回起始到结束之间但不包括结束位置的所有项。注意，slice( )不会影响原始数组。</li>
+              <li><red>splice( ):</red> <u>最强大的数组方法。</u>用途是向数组中部插入项，方式有如下三种：
+                <ol>
+                  <li>删除： 可以删除任意数量的项，只需指定两个参数：要删除的第一项的位置和删除的项数。例如：<code>splice(0,2)</code>会删除数组中的前两项。</li>
+                <li>插入：指定位置插入任意数量的项，只需提供三个参数：起始位置、n（要删除的项数，为0则不改变原数组内容插入）和要插入的项。例如：<code>splice(2, 0, "red", "blue")</code>会从当前数组的位置2开始插入字符串"red"和"blue" 。</li>
+                <li>替换： 要删除的项数与要插入的项数一样，则插入变为替换。</li>
+              </ol>
+            </li>
+            </ul>
+
+            <h4>2.2.5 位置方法</h4>
+            <p>两种方法都接受两个参数：要查找的项和（可选）表示查找起点位置的索引。两种方法都返回要查找的项在数组中的位置，没有找到的情况下返回-1。</p>
+            <ul>
+              <li><red>indexof()</red>: 从数组的开头位置开始向后查找。</li>
+              <li><red>lastIndexof()</red>： 数组的末尾开始向前查找。</li>
+            </ul>
+            <h4>2.2.6 迭代方法</h4>
+            <ul>
+              <li><red>every()</red></li>
+              <li><red>filter()</red></li>
+              <li><red>forEach()</red></li>
+              <li><red>map()</red></li>
+              <li><red>some()</red></li>
+            </ul>
+            
+
+           <samp></samp>
+
+          </div><!-- /.blog-post -->
+
+
+          
+
+        </div><!-- /.blog-main -->
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar " >
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>引用时请附带本网站主页链接：<a class="alert-link" href="www.lxxx.site">www.lxxx.site</a></p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+            </ol>
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4>Contanct me</h4>
+            <ol class="list-unstyled">
+              <li>
+
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myqq" data-whatever="@mdo">My QQ</button>
+                <div class="modal fade" id="myqq" tabindex="-1" role="dialog" aria-labelledby="myqq">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myqq">QQ 1270009836</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../PIC/20.jpg" class="img-responsive" alt="1270009836">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+              </li><br>
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#wechat" data-whatever="@mdo">WeChat</button>
+                <div class="modal fade" id="wechat" tabindex="-1" role="dialog" aria-labelledby="wechat">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="wechat">WeChat number</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../PIC/21.jpg" class="img-responsive" alt="1方丈">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li><br>
+
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#email" data-whatever="@mdo">My Email</button>
+                <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="email">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="email">Email address</h4>
+                 </div>
+
+                <div class="modal-body">
+                <h4>1270009836@qq.com</h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </div><hr>
+
+          <div class="sidebar-module">
+            <h4>旧链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="../program.html">Program</a></li>
+              <li><a href="../HTML&CSS/HTML&CSS.html">HTML&CSS</a></li>
+              <li><a href="../JavaScript/javascript.html">JavaScript</a></li>
+            </ol>
+          </div>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+    </footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if $data && !is_array($data) }{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>{$Think.lang.c_title}{$Think.lang.info}</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <input type="hidden" name="id" value="{$data.id}" />
+                <input type="hidden" name="mod" value="{$data.mod}" />
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_base" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li><a href="#tab_advanced" data-toggle="tab">{$Think.lang.advanced_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        {include file="archive/base" /}
+                        {include file="archive/advanced" /}
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载select2，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    $('input[type="checkbox"][value="j"]').on('ifChecked', function(event){
+        $("#jumplink").removeClass("hide");
+    });
+    $('input[type="checkbox"][value="j"]').on('ifUnchecked', function(event){
+        $("#jumplink").addClass("hide");
+    });
+})
+</script>
+{/block}

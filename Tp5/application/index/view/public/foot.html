@@ -1,0 +1,173 @@
+
+{if ISPJAX != 1 }
+<footer class="main-footer" style="position: relative;z-index: 1">
+    <div class="pull-right hidden-xs"></div>{:confv('copyright')}&nbsp;|&nbsp;<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1270009836&site=qq&menu=yes" class="bds_sqq fa fa-qq"></a>
+</footer>
+
+<aside class="control-sidebar control-sidebar-dark">
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <div class="tab-content">
+        {if condition="session('webuserId') neq null"}
+        <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">个人菜单</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="{:url('Profile/collect')}">
+              <i class="menu-icon fa fa-folder-o bg-orange"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">文章收藏</h4>
+
+                <p>点击查看文章收藏列表</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="{:url('Profile/friend')}">
+              <i class="menu-icon fa fa-heart-o bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">关注好友</h4>
+
+                <p>点击查看好友</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">邮箱地址</h4>
+
+                <p>nora@example.com</p>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <!--<h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="label label-danger pull-right">70%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Update Resume
+                <span class="label label-success pull-right">95%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Laravel Integration
+                <span class="label label-warning pull-right">50%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Back End Framework
+                <span class="label label-primary pull-right">68%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>-->
+        </div>
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+             <form method="post">
+          <h3 class="control-sidebar-heading">通用设置</h3>
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+             浏览追踪
+              <input type="checkbox" class="pull-right" name="viewlog" checked>
+            </label>
+
+            <p>
+              默认打开，关闭后将不可见自己浏览过的文章记录
+            </p>
+          </div>
+          <!-- /.form-group -->
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              展示个人资料
+              <input type="checkbox" class="pull-right" name="infoshow" checked>
+            </label>
+
+            <p>
+              默认打开
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <h3 class="control-sidebar-heading">消息设置</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              允许别人向自己发送消息。
+              <input type="checkbox" class="pull-right" name="sendmsg" checked>
+            </label>
+
+            <p>
+              默认允许他人发送消息
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              消息通知
+              <input type="checkbox" class="pull-right" name="msgbtn" checked>
+            </label>
+            <p>
+              默认打开消息通知
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+        </form>
+        </div>
+        {else /}
+        <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3> 请先登录</h3>
+        </div>
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+        <h3>请先登录</h3>
+        </div>
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      {/if}
+    </div>
+</aside>
+<div class="control-sidebar-bg"></div>
+{/if}

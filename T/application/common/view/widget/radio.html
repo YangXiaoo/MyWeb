@@ -1,0 +1,10 @@
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        {volist name="optionList" id="vo"}
+        <label class="checkbox-inline">
+            <input type="radio" name="{$wconfig.name}" value="{$vo.value}" {$vo.checked} {$wconfig.disabled} class="minimal"> {$vo.html}
+        </label>
+        {/volist}
+    </div>
+</div>

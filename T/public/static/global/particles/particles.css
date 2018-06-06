@@ -1,0 +1,8 @@
+#particles,#particles-after-filter{position:absolute;top:0;left:0;width:100%;height:100%}
+#particles-after-filter{z-index:-2;filter:blur(5px);-webkit-filter:blur(5px)}
+.cover{position:fixed;text-align:center;width:100%;height:100%;z-index:1;overflow:hidden}
+.cover-card{color:#fff;padding:0 30px;overflow:hidden}
+.cover-card .avatar{border-radius:7px;width:156px;height:221px;float:none}
+.cover-card .author_name{display:block;color:#F36170;font-size:1.75em}
+.cover-card .author_job{display:block;color:#8d7edc;font-size:0.8em;font-weight:700;text-transform:uppercase;margin:-5px auto 10px}
+.cover-card .author_bio{font-size:90%;display:block}

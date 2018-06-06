@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{$Think.lang.login}</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+{load href="__STATIC__/global/bootstrap/css/bootstrap.min.css" /}
+{load href="__STATIC__/global/font-awesome/css/font-awesome.min.css" /}
+{load href="__STATIC__/system/dist/css/AdminLTE.min.css" /}
+<!--[if lt IE 9]>
+{load href="__STATIC__/system/dist/js/html5shiv.min.js" /}
+{load href="__STATIC__/system/dist/js/respond.min.js" /}
+<![endif]-->
+</head>
+<body class="hold-transition login-page" style="height:auto;">
+
+<div class="cover">
+    <div id="particles-after-filter">
+        <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="416" height="509"></canvas>
+    </div>
+    <div id="particles">
+        <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="416" height="509"></canvas>
+    </div>
+</div>
+
+<div class="login-box">
+    <div class="login-logo"><a href="http://www.sxxblog.com/" target="_blank" >Tp5-Sxx-Admin</a></div>
+    <div class="login-box-body">
+        <p class="login-box-msg">{$Think.lang.login_title}</p>
+        <form action="{:url('Login/checkLogin')}" method="POST" onsubmit="return false" >
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" name="username" placeholder="{$Think.lang.login_username}">
+                <span class="glyphicon form-control-feedback fa fa-user fa-lg"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" name="password" placeholder="{$Think.lang.login_password}">
+                <span class="glyphicon form-control-feedback fa fa-lock fa-lg"></span>
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-6"><input class="form-control" name="code" placeholder="{$Think.lang.login_code}"></div>
+                <div class="col-xs-4">
+                    <img src="{:captcha_src()}" id="code" alt="captcha" onclick="this.src='{:captcha_src()}?rnd='+Math.random();" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-danger btn-block login" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.login}">{$Think.lang.login}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{load href="__STATIC__/global/jQuery/jquery-2.2.3.min.js" /}
+{load href="__STATIC__/global/bootstrap/js/bootstrap.min.js" /}
+{load href="__STATIC__/global/jQuery/jquery.form.js" /}
+{load href="__STATIC__/global/toastr/toastr.min.css" /}
+{load href="__STATIC__/global/toastr/toastr.min.js" /}
+{load href="__STATIC__/global/particles/particles.css" /}
+{load href="__STATIC__/global/particles/particles.min.js" /}
+{load href="__STATIC__/system/dist/js/login.js" /}
+</body>
+</html>

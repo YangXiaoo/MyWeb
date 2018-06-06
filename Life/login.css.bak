@@ -1,0 +1,43 @@
+body{
+  background-image:url(../PIC/15.jpg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding:0px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    margin:0px
+  }
+
+label{
+  display: block;
+  }
+fieldset{
+  border:0;
+  }
+  form{
+  display: table;
+  padding: 20px;
+  background-color:#6cf;
+
+}
+
+
+p:first-child{
+  text-align: right;
+}
+
+ p:nth-child(2){
+  text-align: left;
+}
+
+ div.tableRow{
+  display: table-row;
+}
+ div p{
+  display: table-cell;
+  padding: 3px;
+  }
+  center{
+  vertical-align:center;
+  margin:200px 0px 0px 0px;
+  }

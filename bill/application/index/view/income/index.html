@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>{block name="title"}THEE{/block}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/TP/public/static/jquery-3.2.1.min.js"></script>
+</head>
+
+<body >
+
+
+<!-- 导航条 -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.lxxx.site">THEE</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+           <li><a href="{:url('Bill/index')}">支出</a></li>
+           <li class="active"><a href="{:url('Income/index')}">收入</a></li>
+           <li><a href="{:url('Total/index')}">总计</a></li>
+        </ul>                 
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{:url('Login/logout')}">注销</a></li>
+        </ul>
+    </div>
+  </div>
+</nav><!-- /菜单导航 -->
+<br>
+<br>
+<br>
+
+
+<div class="container">
+<div align="center"class="table-responsive"> 
+<table class="table table-hover table-bordered ">
+        <tr class="info">
+            <th>日期</th>
+            <th>用途</th>
+            <th>进账</th>
+			<th>操作</th>
+        </tr>
+        <?php
+            $i=0;
+        ?>
+        {volist name="incomes" id="income" key="key" }<!-- C层复制teachers，id标签为$teacher -->
+        <tr id="info-{$key}">
+            <td>{$income->getData('update_time')}</td>
+            <td>{$income->Total->kind}</td>
+            <td>{$income->getData('income')}</td>
+			<td>
+                 <a class="btn btn-primary btn-sm" href="#" id="edit-{$key}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+                &nbsp;&nbsp;
+                <a class="btn btn-danger btn-sm" href="{:url('delete?id=' . $income->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>
+            </td>
+        </tr>
+<script>
+        $(document).ready(function(){
+            $("#show-{$key}").hide();
+            $("#edit-{$key}").click(function(){
+                $("#info-{$key}").hide();
+                $("#show-{$key}").show();
+            });
+            $("#can-{$key}").click(function(){
+                $("#show-{$key}").hide();
+                $("#info-{$key}").show();
+            });
+        });
+</script>
+		<tr id="show-{$key}">
+           <form action="{:url('update')}" method="post" class="form-inline">
+                <td><input type="text" name="name" value="{$income->getData('update_time')}" placeholder="{$income->getData('update_time')}" class="form-control"/></td>
+                <td><select name="kind" class="form-control" id="Total">
+                <?php                 
+                    echo $i=$i+1;
+                ?>
+                {volist name="totals" id="total" key="k"}  
+                <option value="{$total['id']}">{$total['kind']}</option>
+                {/volist}
+                </select></td>
+                <td><input type="hidden" name="id" value="{$income->getData('id')}" />
+                <input type="text" name="income" value="{$income->getData('income')}" placeholder="{$income->getData('income')}" class="form-control"/>
+				</td>
+               <td> <button type="submit" class="btn btn-primary btn-sm" >保&nbsp;存</button>&nbsp; &nbsp;<input type="button" class="btn btn-danger btn-sm" id="can-<?php echo $i ?>" value="取&nbsp;消"></td>
+            </form>
+		</tr>
+
+
+        {/volist}
+    </table>
+	
+</div>
+<div align="center">
+    {$incomes->render()}
+</div>
+
+    <div class="row " >
+        <div class="col-md-12">
+            {block name="search"}
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="time">日期</label>
+                            <input name="time" type="text" class="form-control" placeholder="类型..." value={:input( 'get.time')}>
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                    </form>
+                </div>
+              <div class="col-md-4 text-right" >
+                    <a href="#" class="btn btn-primary" id="add"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+			  </div>
+			</div>
+	</div>
+</div>
+<br>
+				 <div id="addshow" class="container" >
+                 <form action="{:url('insert')}" method="post" class="form-inline" >     <!-- 增加url助手 -->
+                <label>支出:</label>
+                <input type="text" name="income" class="form-control"/>
+                <label>类别:</label>
+                <select name="kind" class="form-control" id="Total">
+                {volist name="totals" id="total" key="k"}  
+                <option value="{$total['id']}">{$total['kind']}</option>
+                {/volist}
+                </select>
+                <button class="btn btn-info" type="submit">保存</button>
+				<input  type="button" class=" btn btn-danger " id="cancel" value="取消"/>
+            </form>
+			</div>
+			<script>
+		$(document).ready(function(){
+		    $("#addshow").hide();
+			$("#add").click(function(){
+			   
+				$("#addshow").show();
+			});
+			$("#cancel").click(function(){
+				$("#addshow").hide();
+			   
+			});
+		});
+</script>
+       
+<hr /> {/block} {block name="content"} {/block} {block name="page"} {/block}
+
+</div>
+</body>
+</html>

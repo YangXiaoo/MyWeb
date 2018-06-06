@@ -1,0 +1,24 @@
+<div class="tab-pane" id="tab_advanced">
+    {:widget('common/Input/index', [$data, [
+        'name' => 'keywords',
+        'title' => $Think.lang.keywords,
+        'placeholder' => $Think.lang.keywords,
+    ]])}
+    {:widget('common/Textarea/index', [$data, [
+        'name' => 'description',
+        'title' => $Think.lang.description,
+        'placeholder' => $Think.lang.description,
+    ]])}
+    {:widget('common/Input/index', [$data, [
+        'name' => 'click',
+        'title' => $Think.lang.click,
+        'placeholder' => $Think.lang.click,
+        'default_val' => '0',
+    ]])}
+    {:widget('common/Select/index', [$data, [
+        'name' => 'status',
+        'title' => $Think.lang.status,
+        'from' => 'selectlist',
+        'fromcfg' => 'status',
+    ]])}
+</div>

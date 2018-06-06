@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>留言板</title>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+<link href="patch.css" rel="stylesheet">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+  <script src="ie-emulation-modes-warning.js"></script> 
+
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--javascript.js by me!-->
+    <script type="javascript.js"></script>
+<link href="docs.min.css" rel="stylesheet">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bdb993b828cbe079a7fbc1a951f44726";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </head>
+
+  <body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../Study.html">Study</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ">
+        <li><a href="../../index.html">Home</a>
+        </li>
+
+        <li><a href="../Study.html">Studypage <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li ><a href="HTML&CSS.html">HTML&CSS</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JavaScript<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#introduce">简介</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#1"><strong>1.基本类型</strong></a></li>
+            <li><a href="#1.1">1.1 数据类型</a></li>
+            <li><a href="#1.2">1.2 语句</a></li>
+            <li><a href="#2"><strong>2.引用类型</strong></a></li>
+            <li><a href="#2.1">2.1 Object类型</a></li>
+            <li><a href="#2.2">2.2 Array类型</a></li>
+            <li><a href="#2.3">2.3 正则表达式RegExp</a></li>
+            <li><a href="#2.4">2.4 String类型</a></li>
+            <li><a href="#2.5">2.5 Global对象</a></li>
+            <li><a href="#2.6">2.6 Function 类型</a></li>
+          </ul>
+
+
+  
+
+
+
+		<li ><a href="jQuery.html">jQuery</a>
+        </li>
+
+        <li><a href="PHP.html">PHP</a>
+        </li>
+         
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container bs-docs-container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">JavaScript</h1>
+        <p class="lead blog-description">书山有路勤为径，学海无涯苦作舟。</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title" id="introduce">JavaScript</h2><small>高级程序设计</small>
+            <data class="blog-post-meta text-left">Dec 11, 2017 by <a href="#">yangxiao</a></data>
+
+     
+
+          </div><!-- /.blog-post -->
+
+
+          
+
+        </div><!-- /.blog-main -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <div class="col-sm-3 col-sm-offset-1 blog-sidebar " >
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>引用时请附带本网站主页链接：<a class="alert-link" href="www.lxxx.site">www.lxa.kim</a></p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+            </ol>
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4><img src="../../PIC/32.png"  width="30px" alt=""> Contanct</h4>
+            <ol class="list-unstyled">
+              <li>
+
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myqq" data-whatever="@mdo">My QQ</button>
+                <div class="modal fade" id="myqq" tabindex="-1" role="dialog" aria-labelledby="myqq">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myqq">QQ 1270009836</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../PIC/20.jpg" class="img-responsive" alt="1270009836">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+              </li><br>
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#wechat" data-whatever="@mdo">WeChat</button>
+                <div class="modal fade" id="wechat" tabindex="-1" role="dialog" aria-labelledby="wechat">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="wechat">WeChat number</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../PIC/21.jpg" class="img-responsive" alt="1方丈">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li><br>
+
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#email" data-whatever="@mdo">My Email</button>
+                <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="email">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="email">Email address</h4>
+                 </div>
+
+                <div class="modal-body">
+                <h4>1270009836@qq.com</h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </div><hr>
+
+          <div class="sidebar-module">
+            <h4>旧链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="../program.html">Program</a></li>
+              <li><a href="../HTML&CSS/HTML&CSS.html">HTML&CSS</a></li>
+              <li><a href="../JavaScript/javascript.html">JavaScript</a></li>
+            </ol>
+          </div>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+    </footer>
+
+
+  </body>
+</html>

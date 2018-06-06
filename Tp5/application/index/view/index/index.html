@@ -1,0 +1,80 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+
+{block name="pjax_container"}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8">
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    {notempty name="vo.litpic"}
+                    <img src="{$vo.litpic}" alt="{$vo.title}" title="{$vo.title}" />
+                    {/notempty}
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags">
+                    <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>
+                    <i class="fa fa-comments" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>
+                
+            </div>
+            {/volist}
+            
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有数据！</div>
+                    {php}var_dump($dataList){/php}
+                </div>
+            </div>
+            {/empty}
+            
+                      <div class="new-arc-box"></div>
+            <div class="x-mb-15">
+                <button class="btn btn-block btn-info" id="new-arc-btn" data-page="2"
+                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." >加载更多文章</button>
+            </div>
+        </div>
+        
+        <div class="col-sm-4 hidden-xs">
+       {include file="inc/arc_hot" /}
+
+            {include file="inc/arc_category" /}
+            {include file="inc/flink" /}
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+   $('body').off('click', '#new-arc-btn');
+    $('body').on("click", '#new-arc-btn', function(event) {
+        var _this = $(this);
+        var page = _this.data('page');
+        _this.button('loading');
+        $.ajax({
+            type: "get",
+            url: '/Tp5/public/index/index/more/page/'+page,
+            success: function(html) {
+                if(html != '') {
+                    $('.new-arc-box').append(html);
+                    _this.data("page", page + 1); //分页数+1
+                    _this.button('reset');
+                } else {
+                    _this.html('没有更多');
+                }
+            }
+        });
+    });
+</script>
+{/block}

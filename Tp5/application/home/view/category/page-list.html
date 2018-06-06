@@ -1,0 +1,72 @@
+
+
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$arctype.typename} - {:confv('title')}</title>
+<meta name="keywords" content="{$arctype.keywords}">
+<meta name="description" content="{$arctype.description}">
+{/block}
+
+{block name="pjax_container"}
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title"><span>共{$pageCount}篇</span></h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <br>
+            {volist name=":arctype_id('sorts ASC,id ASC')" id="vo1"}
+              <h3 class="label label-danger">{$vo1.typename}</h3>
+            <ol>
+                {volist name=":page_category($vo1)" id="vo"}
+                <li>{if condition="$vo1.id eq 15"}
+                {$vo.create_time|time_line}-
+                {/if}
+                <a href="{$vo.url}" {$vo.target} >{$vo.title}</a></li>
+                {/volist}
+
+            </ol>
+            <hr>
+            {/volist}
+        </div>
+        </div><!-- /.blog-main -->
+        
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>著作版权归本网站所有，若有侵权，请联系。</p>
+          </div>
+
+          <div class="sidebar-module">
+            <h4 class="bs-callout bs-callout-info">文档分类</h4>{include file="inc/arc_category" /}
+
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4 class="bs-callout bs-callout-danger">热门文章</h4>
+            {include file="inc/arc_hot" /}
+          </div><hr>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+    <script type="text/javascript">
+$(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+})
+    </script>
+{/block}

@@ -1,0 +1,48 @@
+{extend name="public/new" /}
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+{block name="pjax_container"}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="alert bg-white position">
+            <a href="http://www.lxxx.site"><i class="fa fa-dashboard"></i> Home</a>/<a href="{:url('Profile/index/'.session('oId'))}"> 个人主页</a>/
+            {$data}
+            </div>
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    {notempty name="vo.litpic"}
+                    <img src="{$vo.litpic}" alt="{$vo.title}" title="{$vo.title}" />
+                    {/notempty}
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                    </div>
+                </a>
+                <div class="tags">
+                  <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > 时间：{$vo.create_time|time_line}</i>
+                    <i class="fa fa-comments" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>               
+            </div>
+            {/volist}            
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有数据！</div>
+                </div>
+            </div>
+            {/empty}            
+            {$dataList->render()}
+        </div>        
+        <div class="col-sm-4 hidden-xs">
+       {include file="profile/hot_article" /}
+        </div>
+    </div>
+</section>
+{/block}

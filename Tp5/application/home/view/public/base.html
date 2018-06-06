@@ -1,0 +1,45 @@
+
+{if ISPJAX != 1 }
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/if}
+{block name="title"}<title>杨潇</title>{/block}
+{block name="load_top"}{include file="public/load_top" /}{/block}
+{if ISPJAX != 1 }
+</head>
+
+<body id="body">
+{/if}
+    {block name="head"}{include file="public/head" /}{/block}
+    <div id="pjax-container" >
+        {block name="pjax_container"}{/block}
+    </div>
+    {block name="foot"}{include file="public/foot" /}{/block}
+{block name="load_bottom"}{include file="public/load_bottom" /}{/block}
+</body>
+<style type="text/css">
+body{ 
+       background-color: transparent; 
+   } 
+</style>
+<script type="text/javascript">
+$(function(){
+	$('body').off('click', '#page-black');
+    $('body').on("click", '#page-black', function(event){
+    document.getElementById("body").style.background = "#000000";  
+    document.getElementById("body").style.alpha  = "100%";
+    document.getElementById("body").style.color = "#555";
+    });
+    $('body').off('click', '#page-white');
+    $('body').on("click", '#page-white', function(event){
+    document.getElementById("body").style.background = "#FFFFFF";  
+    document.getElementById("body").style.alpha  = "0%"; 
+    });
+})
+</script>
+</html>

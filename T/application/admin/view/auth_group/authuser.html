@@ -1,0 +1,122 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{$Think.lang.auth_user}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>{$Think.lang.auth_user}</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">{$data->title}：{$Think.lang.auth_user}</a></li>
+                    <li><a href="#tab2" data-toggle="tab">{$Think.lang.create}{$Think.lang.auth_user}</a></li>
+                    <li class="pull-right"><a href="{:url(CONTROLLER_NAME.'/index')}" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="authuser-box authuser-box-del clearfix">
+                            {volist name="userList" id="vo"}
+                            <div class="authuser-list" data-uid="{$vo->user->id}" data-groupid="{$data.id}" title="{$Think.lang.id}:{$vo->user->id} - {$Think.lang.username}:{$vo->user->username}" data-toggle="tooltip">
+                                <div class="authuser-img">
+                                    <img src="{$vo->userInfo->avatar}" >
+                                    <div class="clear"><i class="fa fa-close"></i></div>
+                                </div>
+                                <span>{$vo->user->name}</span>
+                            </div>
+                            {/volist}
+                        </div>
+                        <div class="box-footer clearfix">
+                            {$userList->render()|raw}
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="callout callout-info">{$Think.lang.auth_user_info|raw}</div>
+                        <div class="form-group clearfix">
+                            <div class="col-sm-7" style="padding-left:0;">
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control" type="text" id="auth_user_input" placeholder="{$Think.lang.auth_user_input}" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-flat" id="auth_user_btn" type="button">{$Think.lang.auth_user_btn}</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="authuser-box authuser-box-add clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+$(function(){
+    $('body').off('click', '#auth_user_btn');
+    $('body').on("click", '#auth_user_btn', function(event){
+        var _this = $(this);
+        var val = $('#auth_user_input').val();
+        if(val != ''){
+            $.ajax({
+                type : "post",
+                url : "{:url(CONTROLLER_NAME.'/checkUser')}",
+                dataType : 'json',
+                data : { id:val, group_id:{$data.id} },
+                success : function(data) {
+                    if(data != ''){
+                        var user_str = '';
+                        $.each(data, function (n, value) {
+                            user_str += '<div class="authuser-list" data-uid="'+value.id+'" data-groupid="{$data.id}" title="{$Think.lang.id}:'+value.id+' - {$Think.lang.username}:'+value.username+'" data-toggle="tooltip">';
+                                user_str += '<div class="authuser-img">';
+                                    user_str += '<img src="'+value.userInfo.avatar+'" >';
+                                    user_str += '<div class="clear"><i class="fa fa-plus"></i></div>';
+                                user_str += '</div>';
+                                user_str += '<span>'+value.name+'</span>';
+                            user_str += '</div>';
+                        });
+                        $(".authuser-box-add").html(user_str);
+                    }else{
+                        $(".authuser-box-add").html('');
+                        toastr.warning('{$Think.lang.auth_user_empty}');
+                    }
+                }
+            });
+        }else{
+            toastr.warning('{$Think.lang.please_enter}：{$Think.lang.auth_user_input}');
+        }
+    });
+    
+    $('body').off('click', '.authuser-box .authuser-list');
+    $('body').on("click", '.authuser-box .authuser-list', function(event){
+        var actions;
+        var _this = $(this);
+        var _parent = _this.parent('.authuser-box');
+        var id = _this.data('groupid');
+        var uid = _this.data('uid');
+        if ( _parent.hasClass("authuser-box-del") ){
+            actions = 'del';
+        }else{
+            actions = 'add';
+        }
+        $.ajax({
+            type : "post",
+            url : "{:url(CONTROLLER_NAME.'/authUser')}",
+            dataType : 'json',
+            data : { id:id, uid:uid, actions:actions},
+            success : function(data) {
+                $(".tooltip.fade.top.in").remove();
+                if(data.status == '1'){
+                    _this.remove();
+                    toastr.success(data.info);
+                }else{
+                    toastr.warning(data.info);
+                }
+            }
+        });
+    });
+})
+</script>
+{/block}

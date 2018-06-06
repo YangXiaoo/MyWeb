@@ -1,0 +1,18 @@
+<div class="box box-solid">
+    <div class="box-header with-border"><h3 class="box-title"><i class="fa fa-comments"></i> 最新评论</h3>
+    </div>
+    <div class="box-body chat">
+        {volist name=":arc_comment(5)" id="vo" key="k"}
+        <div class="item">
+            <img src="{$vo->userAvatar->avatar|default='/static/global/image/avatar.png'}" alt="{$vo->user->name|default='游客'}" class="offline">
+            <div class="message">
+                <div>
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {$vo.create_time|time_line}</small>
+                    <a href="javascript:void(0);" class="name">{$vo->user->name|default='游客'}</a>
+                </div>
+                {$vo.content}
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>

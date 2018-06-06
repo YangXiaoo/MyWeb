@@ -1,0 +1,99 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+
+{block name="pjax_container"}
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">文章列表</h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <br>
+
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    <div class="list-box">
+                        <h3>{$vo.title}</h3>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags font-ei ">
+                    <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>&nbsp;
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>&nbsp;
+                    <i class="fa fa-commenting-o" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>&nbsp;
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>&nbsp;
+                </div>
+                
+            </div><hr>
+            {/volist}
+            
+            <div class="new-arc-box"></div>
+            <div class="x-mb-15">
+            <button class="btn btn-block" id="new-arc-btn1" data-page="2"
+                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." style="background-color: #B4EEB4;">加载更多文章</button>
+            </div>
+        </div>
+        </div><!-- /.blog-main -->
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning"  role="alert">
+            <h4>注意！</h4>
+            <p>著作版权归本网站所有，若有侵权，请联系。</p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4 class="bs-callout bs-callout-info" >文档分类</h4>{include file="inc/arc_category" /}
+
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4 class="bs-callout bs-callout-danger">热门文章</h4>
+            {include file="inc/arc_hot" /}
+          </div><hr>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+    <script type="text/javascript">
+$(function(){
+     $('body').off('click', '#new-arc-btn1');
+    $('body').on("click", '#new-arc-btn1', function(event) {
+        var _this = $(this);
+        var page = _this.data('page');
+        _this.button('loading');
+        $.ajax({
+            type: "get",
+            url: '/Tp5/public/home/index/more/',
+            data: {pages: page},
+            success: function(html) {
+                if(html != '') {
+                    $('.new-arc-box').append(html);
+                    _this.data("page", page + 1); //分页数+1
+                    _this.button('reset');
+                } else {
+                    _this.text('没了呀!!!');
+                }
+            }
+        });
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+{/block}

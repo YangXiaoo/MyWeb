@@ -1,0 +1,34 @@
+{if isset($wconfig['theme']) && $wconfig['theme'] == 'arctype_mod' }
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <select class="form-control select2" name="{$wconfig.name}" {$wconfig.disabled} style="width:100%;">
+            {volist name="optionList" id="vo"}
+            <option value="{$vo.value}" {$vo.selected} data-mod="{$vo.html[0]|substr=###,5}" >{$vo.html[1]}</option>
+            {/volist}
+        </select>
+    </div>
+</div>
+{elseif isset($wconfig['theme']) && $wconfig['theme'] == 'archive_arctype' }
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <select class="form-control select2" name="{$wconfig.name}" {$wconfig.disabled} style="width:100%;">
+            {volist name="optionList" id="vo"}
+            <option value="{$vo.value}" {$vo.selected} {if $vo.html[0] == 1 || $vo.html[0] == 3 }disabled="disabled"{/if} >{$vo.html[1]}</option>
+            {/volist}
+        </select>
+    </div>
+</div>
+{else /}
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <select class="form-control select2" name="{$wconfig.name}" {$wconfig.disabled} style="width:100%;">
+            {volist name="optionList" id="vo"}
+            <option value="{$vo.value}" {$vo.selected} >{$vo.html}</option>
+            {/volist}
+        </select>
+    </div>
+</div>
+{/if}

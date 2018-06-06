@@ -1,0 +1,96 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if $data}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>{$Think.lang.c_title}{$Think.lang.info}</h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            {:widget('common/Input/index', [$data, [
+                                'name' => 'title',
+                                'title' => $Think.lang.title,
+                                'placeholder' => $Think.lang.title,
+                            ]])}
+                            {:widget('common/Input/index', [$data, [
+                                'name' => 'level',
+                                'title' => $Think.lang.level,
+                                'placeholder' => $Think.lang.level,
+                            ]])}
+                            {:widget('common/Input/index', [$data, [
+                                'name' => 'notation',
+                                'title' => $Think.lang.notation,
+                                'placeholder' => $Think.lang.notation,
+                            ]])}
+                            {:widget('common/FileUpload/index', [$data, [
+                                'name' => 'pic',
+                                'title' => $Think.lang.pic,
+                                'placeholder' => $Think.lang.pic,
+                            ]])}
+                            {:widget('common/Select/index', [$data, [
+                                'name' => 'recom',
+                                'title' => $Think.lang.recom,
+                                'from' => 'selectlist',
+                                'fromcfg' => 'whether',
+                            ]])}
+                            {:widget('common/Select/index', [$data, [
+                                'name' => 'module',
+                                'title' => $Think.lang.module,
+                                'from' => 'selectlist',
+                                'fromcfg' => 'auth_group',
+                            ]])}
+                            {:widget('common/Select/index', [$data, [
+                                'name' => 'status',
+                                'title' => $Think.lang.status,
+                                'from' => 'selectlist',
+                                'fromcfg' => 'status',
+                            ]])}
+                            {:widget('common/Checkbox/index', [$data, [
+                                'name' => 'rules',
+                                'title' => $Think.lang.rules,
+                                'from' => 'function',
+                                'fromcfg' => 'auth_rule',
+                                'theme' => 'rules',
+                            ]])}
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    /*ajax页面加载select2，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+})
+</script>
+{/block}

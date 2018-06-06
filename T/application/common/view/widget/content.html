@@ -1,0 +1,23 @@
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <textarea class="form-control" name="{$wconfig.name}" placeholder="{$wconfig.placeholder}" >{$wconfig.widget_val}</textarea>
+    </div>
+</div>
+<script>
+var KDEDT_DELETE_URL = '{:url("Uploads/delete")}';   //【删除地址】如果有使用到KindEditor编辑器的文件空间删除功能，必须添加该删除地址全局变量
+$(function(){
+    KindEditor.create('textarea[name="{$wconfig.name}"]',{
+        width : '100%',                                 //宽度
+        height : '320px',                               //高度
+        resizeType : '0',                               //禁止拖动
+        allowFileManager : true,                        //允许对上传图片进行管理
+        uploadJson : '{:url("Uploads/upload")}',        //文件上传地址
+        fileManagerJson : '{:url("Uploads/manager")}',  //文件管理地址
+        //urlType : 'domain',                             //带域名的路径
+        formatUploadUrl: true,                          //自动格式化上传后的URL
+        autoHeightMode: false,                          //开启自动高度模式
+        afterBlur: function () { this.sync(); }         //同步编辑器数据
+    });
+})
+</script>

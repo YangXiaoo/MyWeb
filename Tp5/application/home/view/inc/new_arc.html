@@ -1,0 +1,19 @@
+{notempty name="dataList"}
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags font-ei">
+                    <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>
+                    <i class="fa fa-comments" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>
+                
+            </div><hr>
+            {/volist}
+            {/notempty}

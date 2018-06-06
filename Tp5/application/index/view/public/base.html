@@ -1,0 +1,43 @@
+
+{if ISPJAX != 1 }
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/if}
+{block name="title"}<title>yangxiaoo</title>{/block}
+{block name="load_top"}{include file="public/load_top" /}{/block}
+{if ISPJAX != 1 }
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+{/if}
+    {block name="head"}{include file="public/head" /}{/block}
+    <div class="content-wrapper" id="pjax-container" >
+    <div class="container">
+        {block name="pjax_container"}{/block}
+        </div>
+    </div>
+    {block name="foot"}{include file="public/foot" /}{/block}
+{if ISPJAX != 1 }
+</div>
+<div id="goTop"><i class="fa fa-angle-double-up"></i></div>
+{/if}
+{block name="load_bottom"}{include file="public/load_bottom" /}{/block}
+{if ISPJAX != 1 }
+
+</body>
+<style type="text/css">
+body{ 
+       background-color: transparent; 
+   }
+.wrapper, .content-wrapper{
+	 background-color: transparent; 
+}  
+</style>
+</html>
+{/if}

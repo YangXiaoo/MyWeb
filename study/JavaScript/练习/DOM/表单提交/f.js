@@ -1,0 +1,46 @@
+function focusLabels(){
+	if(!document.getElementsByTagName) return false;
+	var labels = document.getElementsByTagName("label");
+	for (var i=0;i<labels.length; i++ )
+	{
+		if(!labels[i].getAttribute("for")) continue;
+		labels[i].onclick = function(){
+			var id = this.getAttribute("for");
+			if(!document.getElementById(id)) return false;
+			var element = document.getElementById(id);
+			element.focus();
+		}
+	}
+	}
+
+
+function isEmail(field){
+	return (field.value.indexOf("@") != -1 && field.value.indexOf(".") !=-1);
+}
+//验证：
+function validateForm(whichform){
+	for(var i=0; i<whichform.element.length; i++){//form.element.length 属性只关注于input textarea...
+		var element = whichform.element[i];
+			if(element.type == 'email'){
+				if(!isEmail(element)){
+				alert("the "+element.name+" field must be a valid email address.");
+				return false;
+			}
+		}
+	}
+	return true;
+}
+	
+function prepareForms(){
+	for(var i=0; i<document.element.length; i++){
+		var thisform = document.forms[i];
+		thisform.onsubmit = function{
+			return validateForm(this);
+		}
+	}
+}
+	window.onload = function(){
+		focusLabels();
+		prepareForms();
+
+	}

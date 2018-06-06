@@ -1,0 +1,89 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>搜索结果 - {:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+{/block}
+
+{block name="pjax_container"}
+   <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">搜索结果</h1>
+      </div>
+        
+      <div class="row">
+            <div class="alert alert-success position">
+                {:position($arctype['id'], '<i class="fa fa-home"></i> 首页')}
+                <a href="{:url('Search/index')}?k={php}echo $_GET['k'];{/php}">搜索值：{:input('get.k')}</a>
+                <span>></span>
+                <a>搜索结果</a>
+            </div>
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <br>
+
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags">
+                    <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>
+                    <i class="fa fa-comments" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>
+                
+            </div><hr>
+            {/volist}
+            
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有数据！</div>
+                </div>
+            </div>
+            {/empty}
+      <nav aria-label="Page navigation">
+              <ul class="pagination">
+               {$dataList->render()}
+               </ul>
+            </nav>
+        </div>
+        </div><!-- /.blog-main -->
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>著作版权归本网站所有，若有侵权，请联系。</p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>文档分类</h4>{include file="inc/arc_category" /}
+
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4>热门文章</h4>
+            {include file="inc/arc_hot" /}
+          </div><hr>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+{/block}

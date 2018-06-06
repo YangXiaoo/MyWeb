@@ -1,0 +1,17 @@
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <div class="input-group">
+            <input class="form-control" id="timepicker_{$wconfig.name}" name="{$wconfig.name}" value="{$wconfig.widget_val}" placeholder="{$wconfig.placeholder}" {$wconfig.readonly} {$wconfig.disabled} />
+            <div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    $('#timepicker_{$wconfig.name}').datetimepicker({
+        format: '{$wconfig.format}',
+        locale: moment.locale('zh-cn')
+    });
+})
+</script>

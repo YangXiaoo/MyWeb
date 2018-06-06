@@ -1,0 +1,6 @@
+
+            <ol class="list-unstyled" style="font-size:20px;">
+            {volist name=":arctypeCount(1)" id="vo" }
+            <li><a href="{$vo.typelink}"><span class="label label-info pull-right">{$vo.arcCount|count}</span><i class="fa fa-folder-open-o bg-yellow"></i> {$vo.typename}</a></li>
+            {/volist}
+            </ol>

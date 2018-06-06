@@ -1,0 +1,8 @@
+<div class="box box-solid flink" >
+    <div class="box-header with-border "><h3 class="box-title"><i class="fa fa-link"></i> 友情链接</h3></div>
+    <div class="box-body">
+        {volist name=":flinks(1, 2)" id="vo"}
+        <a href="{$vo.url}" class="label" target="_blank" >{$vo.webname}</a>
+        {/volist}
+    </div>
+</div>

@@ -1,0 +1,41 @@
+               {notempty name="acList"}
+                {volist name="acList" id="vo"}
+<div class="item bs-callout bs-callout-gray">
+                    <img src="{$vo.userAvatar.avatar|default='/PIC/avatar.png'}" alt="{$vo.user.username|default='游客'}" height="20px" width="20px" class="offline">
+                    
+                        <span>
+                        {if condition="$vo.uid neq 0"}
+                        <a href="{:url('Profile/index/'.$vo['uid'])}" target="_blank" class="name">{$vo.user.username}</a>
+                        {else /}
+                        <span>游客</span>
+                        {/if}
+                        <small class="text-muted"><i class="fa fa-clock-o"></i> {$vo.create_time|time_line}</small>   
+                        </span><br><br>
+                        {$vo.content}
+                        {notempty name="$userid"}
+                        <button href="javascript:void(0);" data-cid="{$vo.id}" data-ruid="{$vo.uid}" class="btn btn-info btn-xs pull-right arc-btn">回复</button>
+                        {/notempty}<br><br>
+                    {volist name="vo.replay" id="vo2"}
+                    <div class="arc-reply item" >
+                    <blockquote style="background-color: #F8F8FF;">
+                        <img src="{$vo2.ruserAvatar.avatar|default='/PIC/avatar.png'}" alt="{$vo2.user.username|default='游客'}" height="20px" width="20px" >
+                            
+                            {if condition="$vo2.uid neq 0"}
+                               <span> <a href="{:url('Profile/index/'.$vo2['uid'])}" target="_blank" class="name">{$vo2.user.username}</a>
+                               </span>
+                            {else /}
+                            <span>游客</span>
+                            {/if}
+                            <i class="fa fa-clock-o" style="font-size:85%;">{$vo2.create_time|time_line}</i>
+                            
+                            <p>{$vo2.content}</p>
+                            {notempty name="$userid"}
+                            <button href="javascript:void(0);" data-ruid="{$vo2.uid}" data-cid="{$vo.id}" data-tid="{$vo2.id}" class="btn btn-info btn-xs pull-right arc-btn">回复</button>
+                            {/notempty}
+               </blockquote>
+                    </div>
+                    {/volist}
+                </div>
+                {/volist}
+                
+               {/notempty}

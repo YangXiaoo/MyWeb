@@ -1,0 +1,60 @@
+{if ISPJAX != 1 }
+
+<footer class="blog-footer" style="margin: 0px;">
+<div class="row " style="margin: 0px;">
+    <div class="col-sm-6" style="padding: 0px 0px 20px 0px;">
+    <div class="row" align="center" style="margin: 0px; padding: 0px 0px 20px 0px;">
+    <h4 style="color: #EAEAEA;"> <i class="fa fa-paper-plane-o">网站地图</i></h4>
+                    {volist name=":channeldata(0)" id="vo"}
+                    {php}
+                    $cChannel = channeldata($vo['id']);
+                    {/php}
+                    <div class="col-sm-6">
+                    
+                        <span class="font-gray">{$vo.typename}</span><br>
+                        {notempty name="cChannel"}
+                        
+                        <div class="row" style="margin: 0px;">
+                            {volist name="cChannel" id="vo2"}
+                            <div class="col-sm-6 col-xs-6">
+                            <a href="{$vo2.typelink}" title="{$vo2.typename}">
+                            {$vo2.typename}</a>
+                            </div>
+                            {/volist}
+                            </div>
+                        
+                        
+                        {/notempty}
+                </div>
+                    {/volist}
+</div>
+
+    
+    </div>
+
+    <div class="col-sm-6"  style="border-left:2px solid #8a8080;">
+        <div>
+            <h4 style="color: #EAEAEA;"><i class="fa fa-chain">常用链接</i></h4>
+            {volist name=":flinks(1, 20)" id="vo"}
+                <div class="col-sm-6 col-xs-6">
+                    <a href="{$vo.url}"  target="_blank" >{$vo.webname}</a>
+                </div>
+            {/volist}
+        </div>
+        </div>
+        </div>
+
+        <div style="padding: 50px 0px 0px 0px;">
+     {:confv('copyright')}<br>
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1270009836&site=qq&menu=yes" class="bds_sqq fa fa-qq">联系我</a>&nbsp;|&nbsp;
+    <a href="http://www.lxxx.site/index.html" target="_blank">原网页-1</a>&nbsp;|&nbsp;
+     <a href="http://www.lxa.kim" target="_blank">原网页-2</a>&nbsp;|&nbsp;
+    <a href="http://www.lxxx.site/Tp5/public/admin" target="_blank">后台管理</a>
+    </div>
+    <div class="center">
+    <a href="javascript:void(0);" id="page-black">夜间</a>&nbsp;|&nbsp;<a href="javascript:void(0);" id="page-white">白天</a>
+    </div>
+
+</footer>
+
+{/if}

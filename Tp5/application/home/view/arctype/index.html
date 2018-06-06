@@ -1,0 +1,84 @@
+{extend name="public/new" /}
+
+{block name="title"}<title>{$think.lang.list}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+	<h1>文章分类</h1>
+	<ol class="breadcrumb">
+		<li class="active"><i class="fa fa-dashboard"></i>文章分类</li>
+	</ol>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title"></h3>
+					<div class="pull-left">
+						<a href="{:url('create')}" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> {$Think.lang.create}</a>
+					</div>
+				</div>
+                <div class="box-body table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            
+                            <th>{$Think.lang.typename}</th>                           
+                            <th>{$Think.lang.dirs}</th>
+                            <th>{$Think.lang.status}</th>
+                            <th>{$Think.lang.sorts}</th>
+                            <th width="258">{$Think.lang.action}</th>
+                        </tr>
+                        {volist name="dataList" id="vo"}
+                        <tr>
+                            
+                            <td>
+                                <!--空格-->
+                                <span class="editable" data-pk="{$vo.id}" data-name="typename" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.typename}</span>
+                            </td>
+                            
+                            <td><span class="editable" data-pk="{$vo.id}" data-name="dirs" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.dirs}</span></td>
+                            <td>
+                                <a href="javascript:void(0);" data-id="{$vo.id}" data-field="status" 
+                                data-value="{$vo.status}" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" 
+                                class='editimg fa {if condition=" $vo.status == 1 "}fa-check-circle text-green{else /}fa-times-circle text-red{/if}'></a>
+                            </td>
+                            <td>{$vo.sorts}</td>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="{$vo.typelink}" target="_blank"><i class="fa fa-eye"></i> {$Think.lang.preview}</a>
+                                <a class="btn btn-primary btn-xs" href="{:url(CONTROLLER_NAME.'/edit','id='.$vo['id'])}" ><i class="fa fa-edit"></i>{$Think.lang.edit}</a>
+                                <a class="btn btn-primary btn-xs" href="{:url('Archive/create','typeid='.$vo['id'])}" ><i class="fa fa-edit"></i>{$Think.lang.create_arc}</a>
+                                <a href="javascript:void(0);" class="btn btn-danger btn-xs delete-one" data-url="{:url(CONTROLLER_NAME.'/delete')}" data-id="{$vo.id}" ><i class="fa fa-trash">{$Think.lang.delete}</i></a>                            
+                            </td>
+                        </tr>
+                        {/volist}
+                    </table>
+                </div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--editable介绍:https://www.cnblogs.com/landeanfen/p/5821192.html
+    bootstrapTable行内编辑初始方案-->
+<script type="text/javascript">
+$(function(){
+    $('.editable').editable({
+        emptytext: "empty",
+        params: function(params){
+            var data = {};
+            data['id'] = params.pk;
+            data[params.name] = params.value;
+            return data;
+        },
+        success: function(response, newValue){
+            var res = $.parseJSON(response);
+            if (res.status == 1) {
+                toastr.success(res.info);
+            }else{
+                return res.info;
+            }
+        }
+    });
+})
+</script>
+{/block}

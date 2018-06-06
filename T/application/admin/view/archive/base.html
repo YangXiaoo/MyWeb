@@ -1,0 +1,44 @@
+<div class="tab-pane active" id="tab_base">
+    {:widget('common/Select/index', [$data, [
+        'name' => 'typeid',
+        'title' => $Think.lang.typeid,
+        'from' => 'function',
+        'fromcfg' => 'archive_arctyp_tree',
+        'theme' => 'archive_arctype',
+    ]])}
+    {:widget('common/Input/index', [$data, [
+        'name' => 'title',
+        'title' => $Think.lang.title,
+        'placeholder' => $Think.lang.title,
+    ]])}
+    {:widget('common/Checkbox/index', [$data, [
+        'name' => 'flag',
+        'title' => $Think.lang.flag,
+        'from' => 'selectlist',
+        'fromcfg' => 'flag',
+    ]])}
+    <div class="form-group {if stripos($data['flag'], 'j')=== false }hide{/if}" id="jumplink">
+        <label class="col-sm-2 control-label">{$Think.lang.jumplink}</label>
+        <div class="col-sm-7"><input class="form-control" name="jumplink" value="{$data.jumplink}" placeholder="{$Think.lang.jumplink}"></div>
+    </div>
+    {:widget('common/FileUpload/index', [$data, [
+        'name' => 'litpic',
+        'title' => $Think.lang.litpic,
+        'placeholder' => $Think.lang.litpic,
+    ]])}
+    {php}$mods = $data->mod;{/php}
+    {:widget('common/Content/index', [$data->$mods, [
+        'name' => 'content',
+        'title' => $Think.lang.content,
+    ]])}
+    {:widget('common/Input/index', [$data, [
+        'name' => 'writer',
+        'title' => $Think.lang.writer.' - '.$Think.lang.id,
+        'placeholder' => $Think.lang.writer,
+    ]])}
+    {:widget('common/Input/index', [$data, [
+        'name' => 'source',
+        'title' => $Think.lang.source,
+        'placeholder' => $Think.lang.source,
+    ]])}
+</div>

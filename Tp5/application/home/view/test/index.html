@@ -1,0 +1,59 @@
+
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+
+{block name="pjax_container"}
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">文章列表</h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+ <form action="{:url('Uploads/uploads')}" enctype="multipart/form-data" method="post" >
+    <input type="text" name="name" />
+    <input type="file" name="flie" />
+    <input type="submit" value="提交" >
+</form>
+        </div><!-- /.blog-main -->
+        </div>
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>著作版权归本网站所有，若有侵权，请联系。</p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>文档分类</h4>{include file="inc/arc_category" /}
+
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4>热门文章</h4>
+            {include file="inc/arc_hot" /}
+          </div><hr>
+
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+{/block}

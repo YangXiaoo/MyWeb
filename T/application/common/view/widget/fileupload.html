@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label class="col-sm-{$wconfig.title_col} control-label">{$wconfig.title}</label>
+    <div class="col-sm-{$wconfig.content_col}">
+        <div class="input-group">
+            <input class="form-control" name="{$wconfig.name}" value="{$wconfig.widget_val}" placeholder="{$wconfig.placeholder}" {$wconfig.readonly} {$wconfig.disabled} >
+            <span class="input-group-btn">
+                {if $wconfig['type'] == 'image' }
+                <a href="{$wconfig.widget_val_img}" target="_blank" >
+                    <img src="{$wconfig.widget_val_img}" style="height:34px; width:68px;" />
+                </a>
+                {/if}
+                <button class="btn btn-success btn-flat upload-btn" type="button" data-url="{:url('Uploads/upload')}?dir={$wconfig.type}" {$wconfig.btn_disabled} >
+                    <i class="fa fa-cloud-upload"> {$Think.lang.upload}</i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

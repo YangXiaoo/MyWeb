@@ -1,0 +1,44 @@
+{extend name="public/new" /}
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+{block name="pjax_container"}
+    <section class="content">
+
+         <div class="row">
+        <div class="col-sm-8">
+        <div class="alert bg-white position">
+        <a href="http://www.lxxx.site"><i class="fa fa-dashboard"></i> Home</a>/
+        好友列表
+      </div>
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item ">
+                <a href="{$vo.link}" target="_blank" title="{$vo.username}">
+                    <div class="list-box">
+                        <h2>{$vo.username}</h2>
+                    </div>
+                </a>             
+            </div>
+            {/volist}
+            
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有数据！</div>
+                </div>
+            </div>
+            {/empty}
+            
+            {$dataList->render()}
+        </div>
+        
+        <div class="col-sm-4 hidden-xs">
+       {include file="profile/hot_article" /}
+
+        </div>
+    </div>
+</section>
+{/block}

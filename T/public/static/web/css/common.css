@@ -1,0 +1,115 @@
+/*个人中心*/
+.user-panel .info{position:relative;}
+.user-panel .info>span>i{display:none;}
+.user-panel .info.open{ cursor:pointer;}
+.user-panel .info.open>span>i{display:inline-block;}
+.user-panel .info .member{position:absolute; top:30px; left:-220px; display:none; width:100%; z-index:3;}
+.user-panel .info .member ul{ margin:0;padding:0;}
+.user-panel .info .member ul li{list-style-type:none; color:#fff; background:#dd4b39;}
+.user-panel .info .member ul li.sharp{ height:10px; overflow:hidden; background:none;}
+.user-panel .info .member ul li.sharp span{display:inline-block; vertical-align:bottom; width:16px; height:16px; background:#dd4b39; -moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);}
+.user-panel .info .member ul li.top{ border-radius:2px 2px 0 0;}
+.user-panel .info .member ul li.bottom{ border-radius:0 0 2px 2px;}
+/*个人中心*/
+
+/*文档列表*/
+.list-arc-item{ padding:15px; background:#fff; margin-bottom:15px; border-radius:3px; border-bottom:1px solid #ccc; position:relative; overflow:hidden;}
+.list-arc-item h2{ margin-top:0px; height:30px; font-size:25px; color:#333; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.list-arc-item .list-box .info{ color:#58666e; margin-bottom:0px;}
+.list-arc-item h2 em,.list-arc-item .list-box .info em{color:#dd4b39; font-style: normal;}
+.list-arc-item .tags{ color:#98a6ad; font-size:12px; margin-top:10px;}
+.list-arc-item .tags i{ margin-right:5px;}
+.list-arc-item .flag{position:absolute; background:#dd4b39; z-index:999; color:#fff; font-size:12px; width:80px; text-align:center; height:22px; line-height:22px; top:10px; left:-19px;-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);}
+.list-arc-item.top img{ width:100%;}
+.list-arc-item.top h2{ margin-top:10px;}
+.list-arc-item.left img{ width:160px; height:160px;}
+.list-arc-item.left .list-box{ margin:-160px 0 0 175px; min-height:133px;}
+.list-arc-item.left .tags{ margin:10px 0 0 175px;}
+@media screen and (max-width: 500px) {
+    .list-arc-item h2{ font-size:14px; height:16px;}
+    .list-arc-item .list-box .info{ font-size:12px;}
+    .list-arc-item.left img{ width:80px; height:80px;}
+    .list-arc-item.left .list-box{ margin:-80px 0 0 95px; min-height:53px;}
+    .list-arc-item.left .tags{ margin:10px 0 0 95px;}
+    .list-arc-item .flag{ font-size:10px;}
+}
+/*文档列表*/
+
+/*当前位置*/
+.position{ padding:10px 15px; border-bottom:1px solid #ccc; margin-bottom:15px;}
+.position a{ color:#666; text-decoration:none;}
+.position span{ margin:0 4px;}
+/*当前位置*/
+
+/*单页文档*/
+.view-page{ border-radius:3px; border-bottom:1px solid #ccc; padding:15px;}
+.view-page img{ max-width:100%;}
+.view-page blockquote{ padding:0 20px; font-size:14px; margin:0 0 10px;}
+.arc-title{ font-size:25px; margin:0 0 10px 0; color:#333;}
+.arc-tags{ margin:0 0 15px 0; font-size:12px; color:#98a6ad;}
+.arc-tags i{ margin-right: 5px;}
+.arc-content{ min-height:500px; color:#666; margin:0 0 15px 0}
+.arc-content *{margin:0; padding:0;}
+.arc-content p{ line-height:26px;}
+.arc-follow{ border:1px solid #e1e1e1; background:#f7f7f7; border-radius:3px; padding:15px; margin-bottom:15px;}
+.arc-follow > div{ margin-bottom:15px;}
+.arc-follow > div:last-child{ margin-bottom:0px;}
+.arc-follow .like{ display:inline-block; padding: 6px 12px; border:1px solid #dd4b39; border-radius:17px; color:#dd4b39; -moz-transition:background 0.2s linear 0s; -ms-transition:background 0.2s linear 0s; -webkit-transition:background 0.2s linear 0s; -o-transition:background 0.2s linear 0s; transition:background 0.2s linear 0s;}
+.arc-follow .like span{ padding-left:8px; margin-left:8px; border-left:1px solid #dd4b39; -moz-transition:background 0.2s linear 0s; -ms-transition:background 0.2s linear 0s; -webkit-transition:background 0.2s linear 0s; -o-transition:background 0.2s linear 0s; transition:background 0.2s linear 0s;}
+.arc-follow .like:hover{ background:#dd4b39; color:#fff;}
+.arc-follow .like:hover span{ border-left:1px solid #fff;}
+.arc-follow .arc-cp{ font-size:12px; color:#999;}
+.arc-follow .arc-affirm{ color:#999;}
+.arc-share a{ float:left; color:#fff; margin:0px 5px 0 0; padding:0px; background:#27ccc0; width:28px; height:28px; height:28px; line-height:28px; text-align:center; font-size:19px; -moz-transition:background 0.2s linear 0s; -ms-transition:background 0.2s linear 0s; -webkit-transition:background 0.2s linear 0s; -o-transition:background 0.2s linear 0s; transition:background 0.2s linear 0s;}
+.arc-share a.bds_tsina{ background:#f78585 !important;}
+.arc-share a.bds_qzone{ background:#fac33f !important;}
+.arc-share a.bds_tqq{ background:#27ccc0 !important;}
+.arc-share a.bds_sqq{ background:#e74c3c !important;}
+.arc-share a.bds_renren{ background:#94b3eb !important;}
+.arc-share a.bds_weixin{ background:#7ad071 !important;}
+.arc-share a.bds_more{ background:#40a57d !important;}
+@media screen and (max-width: 500px) {
+    .arc-title{ font-size:14px;}
+    .arc-content p{ font-size:12px;}
+    .arc-follow .arc-affirm{ font-size:10px;}
+    .arc-follow .arc-cp{ font-size:10px;}
+    .arc-share a{ width:20px; height:20px; margin:0px 3px 0 0; line-height:20px; font-size:15px;}
+    .arc-next{ font-size:12px;}
+}
+/*单页文档*/
+
+/**/
+.chat .item{ position:relative;}
+.chat .item .item{margin-left:55px;}
+.chat .item > .message{ margin-bottom:10px;}
+.chat .item > .message .name{ font-weight: 600;}
+.gb-form,.arc-form{ margin-top:22px;}
+/**/
+
+/*网站地图*/
+.web-map{ padding:0px; margin:0px;}
+.web-map li{ list-style:none; line-height:40px;}
+.web-map li ul{ padding:0px; margin:0px; border-top:1px dotted #ccc; padding:5px 0;}
+.web-map li ul li{ padding:5px;}
+.web-map li ul li a{ display:block; text-align:center; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
+.web-map li ul li a:hover{ background:#f7f7f7;}
+/*网站地图*/
+
+/*自定义弹框*/
+.show_msg{ width:100%; height:35px; text-align:center; position:fixed; left:0; z-index:1030;}
+.show_span{ display:inline-block; height:35px; padding:0 15px; line-height:35px; background:rgba(221,75,57,0.9); border-radius:3px; color:#fff; font-size:12px;}
+/*自定义弹框*/
+
+/*友情链接*/
+.flink a{ display:inline-block; border-radius:2px; padding:6px; margin:4px; background:#dd4b39; float:left;}
+.flink a:nth-child(2n){ background:#ff851b;}
+.flink a:nth-child(3n){ background:#00a65a;}
+.flink a:nth-child(4n){ background:#00c0ef;}
+.flink a:nth-child(5n){ background:#39cccc;}
+/*友情链接*/
+
+
+
+
+
+

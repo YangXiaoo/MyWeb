@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>购物车</title>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="../../../bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script language="javascript"> 
+function clear(){ 
+Source=document.body.firstChild.data; 
+document.open(); 
+document.close(); 
+document.body.innerHTML=Source; 
+} 
+</script> 
+  </head>
+
+  <body >
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../Study.html">Study</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav ">
+        <li><a href="../../../index.html">Home</a>
+        </li>
+
+        <li><a href="../../Study.html">Studypage <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li ><a href="../HTML&CSS.html">HTML&CSS</a>
+        </li>
+
+        <li  ><a href="../JavaScript.html">JavaScript</a>
+        </li>
+		<li><a href="../jQuery.html">jQuery</a>
+        </li>
+
+        <li class="active" ><a href="../PHP.html">PHP</a>
+        </li>
+         
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+
+      <div class="blog-header">
+      <div>
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">购物车</h2>
+            <data class="blog-post-meta text-left">Dec, 2017 by <a href="#">yangxiao</a></data>
+            <h2>1. checked.php验证登录信息程序</h2>
+			<pre><code>
+&lt?php
+if ( ( $_POST['username'] != null ) && ( $_POST['password'] != null ) ) {
+   $userName = $_POST['username'];
+   $password = $_POST['password'];
+//session_start();//启用
+ $dbhost = 'localhost:3306';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '307231';          // mysql用户名密码
+           //数据库名称
+
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+{
+  die('连接错误: ' . mysqli_error($conn));
+}
+echo '连接成功&ltbr />';
+
+    mysqli_select_db($conn,'yangxiao');
+
+    $sql = "select * from user where `username` = '$userName' ";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($res);
+if ($row['password'] == $password) {
+       //密码验证通过，设置session，把用户名和密码保存在服务端
+       $_SESSION['username'] = $username;
+       $_SESSION['password'] = $password;
+
+       //最后跳转到登录后的欢迎页面 //注意：这里我们没有像cookie一样带参数过去
+       header('Location: goodsList.php');
+}
+}	
+?>
+			</code></pre><hr>
+<h2>2. goodsList.php商品清单</h2>
+			<pre><code>
+&lt?php
+   $goods = array();
+   //从数据库获取商品信息存入$goods二维数组
+   $i = 0;
+   //这里请换上自己的数据库相关信息
+ $dbhost = 'localhost:3306';  // mysql服务器主机地址
+$dbuser = 'root';            // mysql用户名
+$dbpass = '307231';          // mysql用户名密码
+ $dbname='yangxiao';          //数据库名称
+
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass,$dbname);
+if(! $conn )
+{
+  die('连接错误: ' . mysqli_error($conn));
+}
+   $res = mysqli_query($conn,'select * from shop');
+   //这里把商品信息放到$goods二维数组，每一维存的是单个
+   //商品的信息，比如商品名、价格。
+   while ($row = mysqli_fetch_assoc($res)) {
+       $goods[$i]['id'] = $row['id'];
+       $goods[$i]['name'] = $row['name'];
+       $goods[$i]['price'] = $row['price'];
+       $i++ ;
+   }
+&lt!DOCTYPE html&gt
+&lthtml&gt
+&lthead&gt
+   &ltmeta http-equiv="Content-Type" content="text/html;charset=utf-8"&gt
+&lt/head&gt
+&ltbody>
+   &lt?php
+   //取出商品信息显示在页面上，并添加购买功能
+       foreach ($goods as $value) {
+           echo ' 名称：' . $value['name'] . ' 价格 ' . $value['price'];
+           echo "&lta href=buy.php?name=" . $value['name'] . '&price=' . $value['price'] .">BUY&lt/a&gt";
+           echo '&ltbr /&gt';
+       }
+
+   ?>
+   &lta href="shoppingCart.php">ShoppingCart&lt/a&gt
+&lt/body>
+&lt/html>
+</code></pre>
+			<h2>3. buy.php购买程序</h2>
+			
+	<pre><code>
+&lthtml>
+&lthead>
+   &ltmeta http-equiv="Content-Type" content="text/html;charset=utf-8">
+&lt/head>
+&ltbody>
+&lt?php
+   //开启session
+   session_start();
+
+   //获取传过来的商品名和价格
+   $name = $_GET['name'];
+   $price = $_GET['price'];
+
+   //把session中的商品信息和传过来的(刚买的)商品信息对比
+   $goods = $_SESSION['goods'];
+   if ($name == $goods[$name]['name']) {
+       //买过的话，则总价格增加，相应商品数量增加
+       $_SESSION['totalPrice'] += $price;
+       $goods[$name]['number'] += 1;
+   } else {
+       //第一次买的话，将相应的商品信息添加到session中
+       $goods[$name]['name'] = $name;
+       $goods[$name]['price'] = $price;
+       $goods[$name]['number'] += 1;
+       $_SESSION['totalPrice'] += $price;
+   }
+
+   $_SESSION['goods'] = $goods;
+   //购买处理完毕后跳转到商品列表
+   header('location: goodsList.php');
+?>
+&lt/body>
+&lt/html>
+	</code></pre>		
+<h2>4. 购物车shoppingCart.php</h2>
+			<pre disabled="disabled"><code>
+		
+&lthtml>
+&lthead>
+   &ltmeta http-equiv="Content-Type" content="text/html;charset=utf-8">
+&lt/head>
+&ltbody>
+&lt?php
+session_start();
+//将session中的商品信息(即购物车中的商品)和总价显示到页面
+$goods = $_SESSION['goods'];
+echo 'you have buy:&ltbr />';
+foreach ($goods as $value) {
+   echo $value['name'] . ' price ' . $value['price'] . ' amount ' . $value['number'] . '&ltbr />';
+}
+echo 'total price' . $_SESSION['totalPrice'] . '&ltbr />';
+
+?>
+&lta href="goodsList.php">back to GoodsList&lt/a>
+&lt/body>
+&lt/html>			
+		
+			
+			</code></pre>
+           
+           
+
+           
+
+          </div><!-- /.blog-post -->
+
+
+          
+
+        </div><!-- /.blog-main -->
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset alert alert-warning" role="alert">
+            <h4>注意！</h4>
+            <p>引用时请附带本网站主页链接：<a class="alert-link" href="www.lxxx.site">www.lxxx.site</a></p>
+          </div>
+
+
+
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="1.html">购物车</a></li>
+              <li><a href="2.html">数据列表</a></li>
+            </ol>
+          </div><hr>
+
+
+          <div class="sidebar-module">
+            <h4>Contanct me</h4>
+            <ol class="list-unstyled">
+              <li>
+
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myqq" data-whatever="@mdo">My QQ</button>
+                <div class="modal fade" id="myqq" tabindex="-1" role="dialog" aria-labelledby="myqq">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myqq">QQ 1270009836</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../../PIC/20.jpg" class="img-responsive" alt="1270009836">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+
+              </li><br>
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#wechat" data-whatever="@mdo">WeChat</button>
+                <div class="modal fade" id="wechat" tabindex="-1" role="dialog" aria-labelledby="wechat">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="wechat">WeChat number</h4>
+                 </div>
+
+                <div class="modal-body">
+                <img src="../../../PIC/21.jpg" class="img-responsive" alt="1方丈">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li><br>
+
+              <li>
+                <div>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#email" data-whatever="@mdo">My Email</button>
+                <div class="modal fade" id="email" tabindex="-1" role="dialog" aria-labelledby="email">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="email">Email address</h4>
+                 </div>
+
+                <div class="modal-body">
+                <h4>1270009836@qq.com</h4>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </li>
+            </ol>
+          </div><hr>
+
+          <div class="sidebar-module">
+            <h4>旧链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="../../program.html">Program</a></li>
+              <li><a href="../../HTML&CSS/HTML&CSS.html">HTML&CSS</a></li>
+              <li><a href="../../JavaScript/javascript.html">JavaScript</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+    </footer>
+
+
+  </body>
+</html>

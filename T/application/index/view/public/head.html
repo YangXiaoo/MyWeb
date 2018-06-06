@@ -1,0 +1,76 @@
+{if ISPJAX != 1 }
+<header class="main-header">
+    <a href="/" class="logo hidden-xs">
+        <span class="logo-mini"><i class="fa fa-home"></i></span>
+        <span class="logo-lg"><i class="fa fa-home"></i></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">登陆</a>
+                    <ul class="dropdown-menu">
+                        <li class="user-footer">
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">登陆</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="image">
+                <img src="{:confv('logo')}" class="img-circle" alt="User Image">
+            </div>
+            <div class="info">{:confv('person')}</div>
+        </div>
+        
+        <form action="{:url('@search')}" method="GET" class="sidebar-form" pjax-search="" >
+            <div class="input-group">
+                <input type="text" name="k" class="form-control" placeholder="输入关键词搜索..." />
+                <span class="input-group-btn">
+                    <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        
+        <ul class="sidebar-menu">
+            <li class="treeview"><a href="/"><i class="fa fa-home"></i> <span>首页</span></a></li>
+            {volist name=":channeldata(0)" id="vo"}
+            {php}
+            $cChannel = channeldata($vo['id']);
+            {/php}
+            <li class="treeview">
+                <a href="{$vo.typelink}">
+                    {$vo.icon} <span>{$vo.typename}</span>
+                    {notempty name="cChannel"}
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    {/notempty}
+                </a>
+                {notempty name="cChannel"}
+                <ul class="treeview-menu">
+                    {volist name="cChannel" id="vo2"}
+                    <li><a href="{$vo2.typelink}">{$vo2.icon} {$vo2.typename}</a></li>
+                    {/volist}
+                </ul>
+                {/notempty}
+            </li>
+            {/volist}
+        </ul>
+    </section>
+</aside>
+{/if}

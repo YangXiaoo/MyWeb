@@ -1,0 +1,48 @@
+{extend name="public/base" /}
+
+{block name="title"}
+<title>{$archive.title} - {:confv('title')}</title>
+<meta name="keywords" content="{$archive.keywords}">
+<meta name="description" content="{$archive.description}">
+{/block}
+
+{block name="pjax_container"}
+{load href="__STATIC__/web/css/blog.css" /}
+    <div class="container">
+
+
+      <div class="row">
+
+        <div class="col-sm-9 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">{$archive.title}{if condition="session('webuserId') eq session('oId')"}{else /}
+                    <a  href="javascript:void(0);" class="bg-white pull-right "  data-aid="{$archive.id}" data-id="1" id="collect" title="收藏该文章" data-toggle="tooltip"> <i class="fa fa-star-o"></i>
+                    <span class="num">{$archive.collect}</span></a>
+                {/if}</h2>
+            <data class="blog-post-meta ">
+                    <i class="fa fa-clock-o" title="时间：{$archive.create_time|time_line}" data-toggle="tooltip" > {$archive.create_time|time_line}</i>
+                    <i class="fa fa-eye" title="浏览：{$archive.click}" data-toggle="tooltip" > {$archive.click}</i>
+                    <i class="fa fa-anchor" title="文章来源：{if condition="$archive.source eq null"}暂无{else /}{$archive.source}{/if}" data-toggle="tooltip">&nbsp;{if condition="$archive.source eq null"}暂无{else /}{$archive.source}{/if}</i>                    
+                </data><br>
+
+    <div>{$archive.addondata.content}</div>         
+          </div><!-- /.blog-post -->
+
+
+          <nav aria-label="Page navigation">
+             {:prview($archive)}
+            </nav>
+        </div><!-- /.blog-main -->
+
+
+
+
+         <!-- sidebar -->
+        <div class="col-sm-2 col-sm-offset-1 blog-sidebar">
+          </div>
+          </div>
+          </div>
+
+
+{/block}

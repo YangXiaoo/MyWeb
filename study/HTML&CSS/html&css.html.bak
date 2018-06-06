@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html>
+
+       <head>
+            <meta charset="utf-8">
+
+            <title>program</title>    
+
+            <link type="text/css" rel="stylesheet" href="html&css.css" >
+
+      </head>
+
+<body>
+             
+<span id="logo"><a href="../../index.html">INVOLUTE</a></span>
+<span id="stitle">program</span>
+
+
+<nav>
+<ul>
+  <li><a href="../../index.html#logo ">HOME</a></li>
+  <li class="selected"><a href="html&css.html">HTML&CSS</a></li>
+  <li><a href="../JavaScript/javascript.html">JavaScript</a></li>
+  <li>C语言 </li>
+  <li>MatLab</li>
+  </ul>
+</nav>
+
+
+<center>
+<div id="tableContainer">
+<div id="tableRow">
+
+<asideleft  >
+
+<h3>HTML&CSS</h3>
+<indexone>
+<span>基础知识<br></span></indexone>
+
+<indexone><a href="练习/practice.html">练习</a></indexone></br>
+
+
+<h3>JavaScript</h3>
+
+  <indexone><a href="练习/practice.html">练习</a><br></indexone>
+
+ <h3> C语言</h3>
+<span基础知识<br>
+ <span> 数据结构<br>
+  <span>程序<br></span>
+
+ <h3>MatLab</h3>
+<span>基础知识<br>
+  <span>论文图表<br>
+ <span> 程序<br>
+ <span> 练习<br></span>
+
+</asideleft>
+
+<artical>
+<h1>基础知识</h1>
+<h1>练习</h1>
+
+<h1>伟大的渺小</h1>
+<video controls   loop src="../../video/weida.mp4" id="JJ" width="300"></video>
+</artical>
+
+
+<asideright  class="smallindex">
+<h3>LIFESTYLE</h3>
+<span>生活<br></span>
+<span>日记<br></span>
+<span>吉他<br></span>
+
+<h3>WORK</h3>
+<span>任务安排表<br></span>
+<span>正在做的任务<br></span>
+<span>已完成的任务<br></span>
+
+ <h3>STUDY</h3>
+  <span>ME<br></span>
+  <span>英语<br></span>
+  <span>数学<br></span>
+  <h3>TOOLS</h3>
+<span id="smallindex">基础知识<br></span>
+  <span>电脑软件<br></span>
+ <span> 网络资源<br></span>
+
+<h3>OTHERS</h3>
+ 
+</asideright>
+
+</div>
+</div>
+</center>
+
+
+<footer><small>
+         &copy; 2017, yangxiao<br>
+          All trademarks and registered trademarks appearing on
+          this site are the property of their respective owners.
+</small>
+</footer>
+
+
+      </body>
+
+</html>
+
+   

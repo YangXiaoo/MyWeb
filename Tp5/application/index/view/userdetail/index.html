@@ -1,0 +1,134 @@
+{extend name="public/new" /}
+
+{block name="title"}
+<title>{$archive.title} - {:confv('title')}</title>
+<meta name="keywords" content="{$archive.keywords}">
+<meta name="description" content="{$archive.description}">
+{/block}
+
+{block name="pjax_container"}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="alert bg-white position">
+                <a href="{:url('Profile/index/'.session('oId'))}"><i class="fa fa-home"></i> 个人主页</a><span>></span><a href="#">文章</a>
+            </div>    
+            <div class="bg-white view-page">
+                <h1 class="arc-title" >{$archive.title}{if condition="session('webuserId') eq session('oId')"}{else /}
+                    <a  href="javascript:void(0);" class="bg-white pull-right "  data-aid="{$archive.id}" data-id="1" id="collect" title="收藏该文章" data-toggle="tooltip"> <i class="fa fa-star-o"></i>
+                    <span class="num">{$archive.collect}</span></a>
+                {/if}
+                </h1>
+                <div class="arc-tags">
+                    <i class="fa fa-tags" title="文章标签：{$archive.typename}" data-toggle="tooltip"> {$archive.typename}</i>
+                    <i class="fa fa-user-o" title="文章作者：{$archive.username}" data-toggle="tooltip">{$archive.username}</i>
+                    <i class="fa fa-clock-o" title="时间：{$archive.create_time|time_line}" data-toggle="tooltip" > {$archive.create_time|time_line}</i>
+                    <i class="fa fa-eye" title="浏览：{$archive.click}" data-toggle="tooltip" > {$archive.click}</i>
+                    <i class="fa fa-anchor" title="文章来源：{if condition="$archive.source eq null"}暂无{else /}{$archive.source}{/if}" data-toggle="tooltip">&nbsp;{if condition="$archive.source eq null"}暂无{else /}{$archive.source}{/if}</i>                    
+                </div>
+                <div class="arc-content">
+                    {$archive.paper.content}
+                </div>
+                <div class="arc-follow" >                  
+                    <button class="btn like arc-thumbs-up" type="button" data-id="{$archive.id}" data-kind="1" title="点赞" data-toggle="tooltip" >
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <span>{$archive.thumbs_total}</span>
+                    </button>
+                    <div class="clearfix">
+                        <div class="arc-affirm">如有侵犯您的知识产权和版权问题，请通知本人，本人会即时做出处理删除文章。
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="arc-share pull-left">
+                            <a class="bds_tsina fa fa-weibo" title="分享到新浪微博" data-toggle="tooltip" href="http://service.weibo.com/share/share.php?url={php}echo request()->url(true);{/php}&title={$archive.title}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
+                            <a class="bds_qzone fa fa-star" title="分享到QQ空间" data-toggle="tooltip" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={php}echo request()->url(true);{/php}&showcount=1&desc=&summary={$archive.description}&title={$archive.title}&site={:confv('title')}&pics={php}echo request()->domain();{/php}{$archive.litpic}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
+                            <a class="bds_tqq fa fa-tencent-weibo" title="分享到腾讯微博" data-toggle="tooltip" href="http://share.v.t.qq.com/index.php?c=share&a=index&url={php}echo request()->url(true);{/php}&title={$archive.title}&summary={$archive.description}&pics={php}echo request()->domain();{/php}{$archive.litpic}&site={:confv('title')}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
+                            <a class="bds_sqq fa fa-qq" title="分享到QQ好友" data-toggle="tooltip" href="http://connect.qq.com/widget/shareqq/index.html?url={php}echo request()->url(true);{/php}&desc=&title={$archive.title}&summary={$archive.description}&pics={php}echo request()->domain();{/php}{$archive.litpic}&flash=&site={:confv('title')}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
+                            <a class="bds_weixin fa fa-weixin" href="javascript:void(0);" title="分享到微信" data-toggle="tooltip" ></a>
+                        </div>
+                        <div class="pull-right arc-cp" title="转载请联系作者获得授权，并注明转载地址">© 著作权归{$archive.username}所有</div>
+                    </div>
+                </div>
+                <div class="arc-next">
+                    {:preview($archive)}
+                </div>
+            </div>
+            <div class="box-body chat">
+                <h4 style="margin:15px 0;"><i class="fa fa-comments-o"></i>{$archive.comment_total} 条评论</h4>
+                {volist name="acList" id="vo"}
+                <div class="item">
+                    <img src="{$vo.userAvatar.avatar|default='/PIC/avatar.png'}" alt="{$vo.user.username|default='游客'}" class="offline">
+                    <div class="message">
+                        <p>
+                        {if condition="$vo.uid neq 0"}
+                        <a href="{:url('Profile/index/'.$vo['uid'])}" target="_blank" class="name">{$vo.user.username}</a>
+                        {else /}
+                        <span>游客</span>
+                        {/if}
+                        <small class="text-muted"><i class="fa fa-clock-o"></i> {$vo.create_time|time_line}</small>   
+                        </p>
+                        {$vo.content}
+                        {notempty name="$userid"}
+                        <a href="javascript:void(0);" data-cid="{$vo.id}" data-ruid="{$vo.uid}" class="btn btn-info btn-xs pull-right arc-btn">回复</a>
+                        {/notempty}
+                    </div>
+                    {volist name="vo.replay" id="vo2"}
+                    <div class="item">
+                        <img src="{$vo2.ruserAvatar.avatar|default='/PIC/avatar.png'}" alt="{$vo2.user.username|default='游客'}" class="offline">
+                        <div class="message">
+                            <p>
+                            {if condition="$vo2.uid neq 0"}
+                                <a href="{:url('Profile/index/'.$vo2['uid'])}" target="_blank" class="name">{$vo2.user.username}</a>
+                            {else /}
+                            <span>游客</span>
+                            {/if}
+                                <small class="text-muted "><i class="fa fa-clock-o"></i> {$vo2.create_time|time_line}</small>
+                            </p>
+                            {$vo2.content}
+                            {notempty name="$userid"}
+                            <a href="javascript:void(0);" data-ruid="{$vo2.uid}" data-cid="{$vo.id}" data-tid="{$vo2.id}" class="btn btn-info btn-xs pull-right arc-btn">回复</a>
+                            {/notempty}
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                {/volist}
+                {$acList->render()}
+            </div>
+            {notempty name="$userId"}
+            <div class="clearfix guestbook_box">
+                <form class="arc-form clearfix" method="POST" action="{:url('ArcComment/userarchiveSave')}" onsubmit="return false" >
+                    <input type="hidden" name="ruid" value="0" />
+                    <input type="hidden" name="cid" value="0" />
+                    <input type="hidden" name="tid" value="0" />
+                    <input type="hidden" name="aid" value="{$archive.id}" />
+                    <input type="hidden" name="uid" value="{$userId}" />
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                        <img class="img-responsive img-circle img-sm" src="{:cookie('webavatar')}" alt="Alt Text">
+                            <label for="gb_content">评论内容 <span class="text-red">*</span></label>
+                            <textarea class="form-control" id="gb_content" name="content" rows="3" style="resize:none;" placeholder="说点什么吧..."></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 提交">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {/notempty}
+            {empty name="$userId"}
+            <div align="center">请先<a href="{:url('Login/login')}">登录</a>，再发表留言。</div>
+            {/empty}
+
+        </div>
+        <div class="col-sm-4 hidden-xs">
+            {include file="profile/hot_article" /}
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+SyntaxHighlighter.highlight();
+</script>
+{/block}
