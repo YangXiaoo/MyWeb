@@ -100,7 +100,7 @@ class Login extends Common{
 		$mail->Port=465; 
 		//填写你的email账号和密码 
 		$mail->Username="1593606228@qq.com"; 
-		$mail->Password="yrvnpxwjbmyiiged";
+		$mail->Password="xxx";
 		//注意这里要填写授权码就是我在上面网易邮箱开启SMTP中提到的，不能填邮箱登录的密码哦。 
 		//设置发送方，最好不要伪造地址 
 		$mail->From="popmarshmallow@foxmail.com"; 
