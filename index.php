@@ -8,5 +8,5 @@
 
 </body>
 <?php
-echo "<script> window.location.href='http://www.lxxx.site/Tp5/public/home';</script>";
+echo "<script> window.location.href='/Tp5/public/home';</script>";
 ?>

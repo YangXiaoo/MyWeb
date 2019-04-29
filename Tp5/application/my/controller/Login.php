@@ -61,7 +61,7 @@ class Login extends Controller
 			 if (!empty($user)) {
 			 	if ($user['status'] != '1') {
 			 		return ajaxReturn(lang('user_stop'));
-			 	}elseif($user['password'] != md5($data['password'])){
+			 	}elseif($user['password'] != $data['password']){
 			 		return ajaxReturn(lang('password_error'));
 			 	}else{
 			 		$this->updateLogin($user);
@@ -138,3 +138,4 @@ class Login extends Controller
 		$this->redirect('Login/index', $params);
 	}
 }
+// 8b1556c9f46a8aeb44634641feab6f17
