@@ -26,7 +26,18 @@
                 </div>
                 <div class="arc-follow" >
                    
+                        <button class="btn like arc-thumbs-up" type="button" data-id="{$archive.id}" data-kind="0" title="点赞" data-toggle="tooltip" >
+                            <i class="fa fa-thumbs-o-up"></i>
+                            <span>{$archive.thumbs_total}</span>
+                        </button>
                         
+
+                        <!--
+                        <button class="btn btn-danger pull-right" type="button"><i class="fa fa-heart"></i> 赞赏支持</button>
+                        -->
+                    <div class="clearfix">
+                        <div class="arc-affirm">如有侵犯您的知识产权和版权问题，请通知本人，本人会即时做出处理删除文章。</div>
+                    </div>
                     <div class="clearfix">
                         <div class="arc-share pull-left">
                             <a class="bds_tsina fa fa-weibo" title="分享到新浪微博" data-toggle="tooltip" href="http://service.weibo.com/share/share.php?url={php}echo request()->url(true);{/php}&title={$archive.title}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
@@ -35,19 +46,20 @@
                             <a class="bds_sqq fa fa-qq" title="分享到QQ好友" data-toggle="tooltip" href="http://connect.qq.com/widget/shareqq/index.html?url={php}echo request()->url(true);{/php}&desc=&title={$archive.title}&summary={$archive.description}&pics={php}echo request()->domain();{/php}{$archive.litpic}&flash=&site={:confv('title')}" onclick="window.open(this.href, 'share', 'width=550,height=335');return false;" ></a>
                             <a class="bds_weixin fa fa-weixin" href="javascript:void(0);" title="分享到微信" data-toggle="tooltip" ></a>
                         </div>
-                        <div class="pull-right arc-cp" title="点赞">                       <button class="btn like arc-thumbs-up" type="button" data-id="{$archive.id}" data-kind="0" title="点赞" data-toggle="tooltip" >
-                            <i class="fa fa-thumbs-o-up"></i>
-                            <span>{$archive.thumbs_total}</span>
-                        </button></div>
+                        <div class="pull-right arc-cp" title="转载请联系作者获得授权，并注明转载地址">© 著作权归作者所有</div>
                     </div>
                 </div>
                 <div class="arc-next">
                     {:prenext($archive)}
                 </div>
             </div><br>
-             <div class="box-body chat">
+            <div class="chat box box-default bg-white  collapsed-box">
                 <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-comments-o"></i>{$arccommentTotal} 条评论</h3>
+                 <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
               </div>
               <div class="box-body">
                 {volist name="acList" id="vo"}
@@ -88,13 +100,9 @@
                     {/volist}
                 </div>
                 {/volist}
-                 <div class="new-comen-box"></div>
-            <div class="x-mb-15">
-                <button class="btn btn-block btn-info" id="new-comen-btn" data-page="2"
-                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." data-dirs="{$arctype.dirs}" data-id="{$archive.id}">加载更多评论</button>
-            </div>
-               
+                {$acList->render()}
                 </div>
+            </div>
 
             {php}
             $userid = session('webuserId');
@@ -130,7 +138,7 @@
             {php}
             }
             {/php}
-</div>
+
         </div>
         <div class="col-sm-4 hidden-xs">
             {include file="inc/arc_hot" /}
@@ -141,29 +149,5 @@
 </section>
 <script type="text/javascript">
 SyntaxHighlighter.highlight();
-$(function(){
-    $('body').off('click', '#new-comen-btn');
-    $('body').on("click", '#new-comen-btn', function(event) {
-        var _this = $(this);
-        var page = _this.data('page');
-        var dirs = _this.data('dirs');
-        var id = _this.data('id');
-        _this.button('loading');
-        $.ajax({
-            type: "get",
-            url: '/Tp5/public/index/detail/more/',
-            data: {dirs: dirs, id: id, page: page},
-            success: function(html) {
-                if(html != '') {
-                    $('.new-comen-box').append(html);
-                    _this.data("page", page + 1); //分页数+1
-                    _this.button('reset');
-                } else {
-                    _this.html('没有更多');
-                }
-            }
-        });
-    });
-})
 </script>
 {/block}

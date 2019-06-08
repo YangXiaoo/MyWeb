@@ -116,8 +116,6 @@ if(!isset($_SESSION['unc'])){
         <div align="center"><h4 class="modal-title" >用户登录</h4></div>
       </div>
 <div class="modal-body">
-<?php
-?>
   <script language="javascript">
 			   function chkinputlogin(form){
 			     if(form.usernc.value==""){
@@ -150,7 +148,6 @@ function chkinputlogin1(form){
 					 return false;
 				 }
 				 return true;
-}
 }
 
    $(document).ready(function(){
@@ -230,6 +227,8 @@ $num="";
                </form>
             </div>
 			</div>
+    
+
       </div>
     </div>
   </div>

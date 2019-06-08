@@ -48,7 +48,7 @@ class Detail extends Common
         ];
         $arccommentTotal = $acModel->where($where)->count();
         $where['cid'] = 0;
-        $acList = $acModel->where($where)->order('id DESC')->page(1, 5)->select();
+        $acList = $acModel->where($where)->order('id DESC')->paginate(10, false, page_param());
         foreach ($acList as $k => $v){
             $v->replay;
             $v->userAvatar;
@@ -71,42 +71,6 @@ class Detail extends Common
         }else{
             return $this->fetch($arctype['temparticle']);   //栏目模板
        }
-    } 
-   public function more($dirs, $id, $page)
-    {
-        //检测静态页面
-        //return
-        $acModel = new ArcComment();
-        $arctypeModel = new Arctype();
-        $arctype = $arctypeModel->where(['dirs'=>$dirs])->order('id DESC')->find();
-        $arctype->arctypeMod;
-        
-        $archiveModel = new Archive();
-        $archive = $archiveModel->where(['id'=>$id, 'status'=>1])->find();
-        if (empty($archive)){
-            //跳转404
-        }
-        $archive['addondata'] = $archive->{$arctype->arctypeMod->mod};   //拓展模式表数据
-        unset($archive[$arctype->arctypeMod->mod]);        
-        $where = [
-                'aid' => $archive['id'],
-                'status' => 1,
-        ];
-        $where['cid'] = 0;
-        $acList = $acModel->where($where)->order('id DESC')->page($page,5)->select();
-        foreach ($acList as $k => $v){
-            $v->replay;
-            $v->userAvatar;
-            $v->user;
-        }
-         if ($dirs == 'diary' && !isAdmin()) {
-            return $this->fetch('diary');
-        }
-        $userid = session('webuserId');
-        $this->assign('archive', $archive);   //当前文章信息
-        $this->assign('acList', $acList);   //文档评论
-        $this->assign('userId', $userid);
-        return $this->fetch('inc/new_comen');
     } 
 /**
  * @todo  阅读浏览记录
@@ -186,7 +150,6 @@ class Detail extends Common
             return ajaxReturn($data['info']);      
             }
     }
-
 /**
  * @todo  收藏文章
  * @time(2018-3-8)

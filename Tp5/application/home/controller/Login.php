@@ -18,7 +18,7 @@ use email\PHPMailer;
 class Login extends Common{
 	//1.跳转至登录页面index；2.右上角登录check；3.注销；
 	//关联模型并初始化_initialize
-	//初始化中连续写多个$this->xxModel = new xx();只有一个]有效
+	//初始化中连续写多个$this->xxModel = new xx();只有一个地有效
 	private $userModel;
 	public function _initialize(){
 		parent::_initialize();//父的方法，构建为_construct()
@@ -88,10 +88,10 @@ class Login extends Common{
     public function sendEmail($user){
     	$mail=new PHPMailer(); 
        	$send_email=$user['email'];
-		$send_theme="sign";
+		$send_theme="注册确认";
 		//$send_kind=$_POST['kind'];
 		//邮件内容
-		$mailcontent = "<div align=center><strong>user : </strong>";
+		$mailcontent = "<div align=center><strong>用户 : </strong>";
 		//设置smtp参数 
 		$mail->IsSMTP(); 
 		$mail->SMTPAuth=true; 
@@ -100,12 +100,12 @@ class Login extends Common{
 		$mail->Port=465; 
 		//填写你的email账号和密码 
 		$mail->Username="1593606228@qq.com"; 
-		$mail->Password="xxx";
+		$mail->Password="yrvnpxwjbmyiiged";
 		//注意这里要填写授权码就是我在上面网易邮箱开启SMTP中提到的，不能填邮箱登录的密码哦。 
 		//设置发送方，最好不要伪造地址 
 		$mail->From="popmarshmallow@foxmail.com"; 
 		$mail->FromName="marshroom";//发送者用户名 
-		$mail->Subject="sign";//邮件标题 
+		$mail->Subject="确认注册";//邮件标题 
 		$mail->AltBody=$mailcontent; //邮件内容
 		$mail->WordWrap=50; // set word wrap 
 		$mail->MsgHTML($mailcontent); 

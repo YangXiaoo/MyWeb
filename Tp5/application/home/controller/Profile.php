@@ -173,7 +173,7 @@ class Profile extends Common{
 		$uid = session('webuserId');
 		$acModel = new ArcComment();
 		$actModel = new ArcThumbsup();
-		$acvModel = new Archive();
+		$acvModel =new Archive();
 		$atModel = new Arctype();
 		$tmModel = new Timeline();
 		$uacvModel = new UserArchive();

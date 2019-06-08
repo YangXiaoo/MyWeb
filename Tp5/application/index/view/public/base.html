@@ -12,15 +12,13 @@
 {block name="load_top"}{include file="public/load_top" /}{/block}
 {if ISPJAX != 1 }
 </head>
-<body class="hold-transition skin-blue layout-top-nav">
+<body class="hold-transition skin-blue-light layout-boxed sidebar-mini sidebar-collapse"  >
 <div class="wrapper">
 
 {/if}
     {block name="head"}{include file="public/head" /}{/block}
     <div class="content-wrapper" id="pjax-container" >
-    <div class="container">
         {block name="pjax_container"}{/block}
-        </div>
     </div>
     {block name="foot"}{include file="public/foot" /}{/block}
 {if ISPJAX != 1 }

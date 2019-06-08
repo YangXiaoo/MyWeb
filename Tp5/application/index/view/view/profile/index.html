@@ -1,0 +1,87 @@
+{extend name="public/new" /}
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+{block name="pjax_container"}
+    <section class="content">
+
+         <div class="row">
+        <div class="col-sm-8">
+        <div class="alert bg-white position">
+        <a href="http://www.lxxx.site"><i class="fa fa-dashboard"></i> Home</a>/
+        个人主页
+      </div>
+            {volist name="dataList" id="vo"}
+            <div class="list-arc-item {$vo.listStyle}">
+                <a href="{$vo.arcurl}" {$vo.target} title="{$vo.title}">
+                    {notempty name="vo.litpic"}
+                    <img src="{$vo.litpic}" alt="{$vo.title}" title="{$vo.title}" />
+                    {/notempty}
+                    <div class="list-box">
+                        <h2>{$vo.title}</h2>
+                        <div class="info">{$vo.description}</div>
+                    </div>
+                </a>
+                <div class="tags">
+                  <i class="fa fa-tags" title="文章标签：{$vo.typename}" data-toggle="tooltip"> {$vo.typename}</i>
+                    <i class="fa fa-clock-o" title="时间：{$vo.create_time|time_line}" data-toggle="tooltip" > {$vo.create_time|time_line}</i>
+                    <i class="fa fa-comments" title="评论：{$vo.comment_total}" data-toggle="tooltip" > {$vo.comment_total}</i>
+                    <i class="fa fa-thumbs-o-up" title="点赞：{$vo.thumbs_total}" data-toggle="tooltip" > {$vo.thumbs_total}</i>
+                </div>
+                
+            </div>
+            {/volist}
+            
+            {empty name="dataList"}
+            <div class="list-arc-item top">
+                <div class="list-box">
+                    <div class="info text-center">暂时没有数据！</div>
+                </div>
+            </div>
+            {/empty}
+            
+            {$dataList->render()}
+        </div>
+        
+        <div class="col-sm-4 hidden-xs">
+       {include file="profile/hot_article" /}
+
+        </div>
+    </div>
+</section>
+{/block}
+<!--
+=====================标签(icon)=============
+time-label时间，
+fa fa-envelope bg-blue信封
+fa fa-user bg-aqua用户
+fa fa-comments  bg-green评论
+fa fa-camera bg-purple图片
+fa-heart-o bg-red 关注好友  
+fa-reply fa-yellow 回复 
+fa-thumbs-o-up bg-red点赞
+fa-eye bg-teal查看
+bg-maroon
+bg-black
+bg-orange
+bg-purple
+bg-teal
+bg-navy
+==================操作(action)============= 
+0登录，
+1阅读，
+2点赞，
+3文章留言，
+4文章回复一级留言消息，
+5添加好友，
+6有人关注你，
+7删除好友成功，
+8注销成功，
+9文章回复二级留言，
+10别人对自己文章评论的回复，
+11注册，
+12别人对你取消关注
+-->

@@ -1,63 +1,23 @@
 {if ISPJAX != 1 }
- <header class="main-header">
+<header class="main-header">
+    <a href="/" class="logo hidden-xs">
+        <span class="logo-mini"><i class="fa fa-home"></i></span>
+        <span class="logo-lg"><i class="fa fa-home"></i></span>
+    </a>
     <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="../../index2.html" class="navbar-brand"><b>YANG</b>XIAO</a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            {volist name=":channeldata(0)" id="vo"}
-            {php}
-            $cChannel = channeldata($vo['id']);
-            {/php}
-                   <li class="dropdown">
-                <a href="{$vo.typelink}" class="dropdown-toggle" data-toggle="dropdown">
-                     <span>{$vo.typename}</span>
-                </a>
-                {notempty name="cChannel"}
-                <ul class="dropdown-menu" role="menu">
-                    {volist name="cChannel" id="vo2"}
-                    <li><a href="{$vo2.typelink}"> {$vo2.typename}</a></li>
-                    {/volist}
-                </ul>
-                {/notempty}
-            </li>
-            {/volist}
-          </ul>
-<form action="{:url('Search/index')}" method="GET" class="navbar-form navbar-left" pjax-search="" >
-            <div class="input-group">
-                <input type="text" name="k" class="form-control" placeholder="输入关键词搜索..." />
-                <span class="input-group-btn">
-                    <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>
-        </div>
-        <!-- /.navbar-collapse -->
-        <!-- Navbar Right Menu -->
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-
-{php}
+        <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        {php}
         $userid = session('webuserId');
         if(empty($userid)){
         {/php}
-            <!-- Tasks Menu -->
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="javascript:void(0);"  class="dropdown-toggle" id="plzlog" data-toggle="dropdown">
-                登陆
-              </a>
-<ul class="dropdown-menu">
-<form action="{:url('Login/checkLogin')}" method="POST" class="no-padding" onsubmit="return false" >
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="javascript:void(0);" id="plzlog" class="dropdown-toggle" data-toggle="dropdown">登陆</a>
+                    <ul class="dropdown-menu">
+                        <form action="{:url('Login/checkLogin')}" method="POST" class="no-padding" onsubmit="return false" >
                             <li class="user-header" style="background-color:#ffffff;">
                                 <div class="input-group" style="margin-bottom:10px;">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -97,13 +57,24 @@
                                 <a href="{:url('Login/index')}" class="third-way pull-right" style="color:#0066ff">注册</a>
                             </li>
                         </form>
-</ul>
+                    </ul>
 
-{php}
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+        {php}
         }else{
         {/php}
-        <li class="dropdown user user-menu">
-     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+         <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="/" target="_blank" >{$Think.lang.web_home}</a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{:cookie('webavatar')}" class="user-image">
                             <span class="hidden-xs">{:cookie('webname')}</span>
                         </a>
@@ -117,14 +88,62 @@
                                 <div class="pull-right"><a href="{:url('Login/loginOut')}" class="btn btn-default btn-flat">退出</a></div>
                             </li>
                         </ul>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-custom-menu -->
-      </div>
-      <!-- /.container-fluid -->
+                    </li>
+                    <li>
+                    <a href="javascript:void(0);" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
         {php}
         }{/php}
+
     </nav>
-  </header>
+</header>
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="image">
+                <img src="{:confv('logo')}" class="img-circle" alt="User Image">
+            </div>
+            <div class="info">{:confv('person')}</div>
+        </div>
+        
+        <form action="{:url('Search/index')}" method="GET" class="sidebar-form" pjax-search="" >
+            <div class="input-group">
+                <input type="text" name="k" class="form-control" placeholder="输入关键词搜索..." />
+                <span class="input-group-btn">
+                    <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <ul class="sidebar-menu">
+            <li class="treeview"><a href="/"><i class="fa fa-home"></i> <span>首页</span></a></li>
+            {volist name=":channeldata(0)" id="vo"}
+            {php}
+            $cChannel = channeldata($vo['id']);
+            {/php}
+            <li class="treeview">
+                <a href="{$vo.typelink}">
+                    {eq name="$vo.id" value="1"}<i class="fa fa-list"></i>{/eq}
+                    {eq name="$vo.id" value="2"}<i class="fa fa-file-text"></i>{/eq}
+                     <span>{$vo.typename}</span>
+                    {notempty name="cChannel"}
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    {/notempty}
+                </a>
+                {notempty name="cChannel"}
+                <ul class="treeview-menu">
+                    {volist name="cChannel" id="vo2"}
+                    <li><a href="{$vo2.typelink}"><i class="fa fa-circle-o"></i> {$vo2.typename}</a></li>
+                    {/volist}
+                </ul>
+                {/notempty}
+            </li>
+            {/volist}
+        </ul>
+    </section>
+</aside>
 {/if}

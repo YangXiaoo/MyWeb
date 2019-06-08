@@ -41,11 +41,7 @@
             </div>
             {/empty}
             
-                      <div class="new-arc-box"></div>
-            <div class="x-mb-15">
-                <button class="btn btn-block btn-info" id="new-arc-btn" data-page="2"
-                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." >加载更多文章</button>
-            </div>
+            {$dataList->render()}
         </div>
         
         <div class="col-sm-4 hidden-xs">
@@ -56,25 +52,4 @@
         </div>
     </div>
 </section>
-<script type="text/javascript">
-   $('body').off('click', '#new-arc-btn');
-    $('body').on("click", '#new-arc-btn', function(event) {
-        var _this = $(this);
-        var page = _this.data('page');
-        _this.button('loading');
-        $.ajax({
-            type: "get",
-            url: '/Tp5/public/index/index/more/page/'+page,
-            success: function(html) {
-                if(html != '') {
-                    $('.new-arc-box').append(html);
-                    _this.data("page", page + 1); //分页数+1
-                    _this.button('reset');
-                } else {
-                    _this.html('没有更多');
-                }
-            }
-        });
-    });
-</script>
 {/block}

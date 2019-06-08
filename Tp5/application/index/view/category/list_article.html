@@ -39,11 +39,7 @@
                 </div>
             </div>
             {/empty}
-                      <div class="new-arc-box"></div>
-            <div class="x-mb-15">
-                <button class="btn btn-block btn-info" id="new-arc-btn" data-page="2"
-                data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 加载中..." >加载更多文章</button>
-            </div>
+            {$dataList->render()}
         </div>
         
         <div class="col-sm-4 hidden-xs">

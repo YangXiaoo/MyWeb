@@ -25,7 +25,7 @@ class Common extends Controller
         }else{
             $langField = config('default_lang');
         }
-        Lang::load(APP_PATH . 'home/lang/'.$langField.'/'.CONTROLLER_NAME.'.php');
+        Lang::load(APP_PATH . 'admin/lang/'.$langField.'/'.CONTROLLER_NAME.'.php');
     }
 
 }

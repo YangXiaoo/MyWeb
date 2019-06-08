@@ -1,5 +1,4 @@
 <?php
-//通过邮箱修改密码
 include("conn/conn.php");
 echo "<meta http-equiv='Content-type' content='text/html'; charset='utf-8' >";
 $pwd=$_POST["pwd"];

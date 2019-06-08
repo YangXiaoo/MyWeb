@@ -69,7 +69,7 @@ public function index($dirs)
         }else{
             $order = 'id DESC';
         }
-        $dataList = $archiveModel->where($where)->order($order)->page(1, 10)->select();
+        $dataList = $archiveModel->where($where)->order($order)->paginate($arctype['pagesize'], false, page_param());
         foreach ($dataList as $k => $v){
             $v->arctype;
             $dataList[$k]['typename'] = $v->arctype->typename;

@@ -28,7 +28,7 @@ if(isset($_SESSION['userword'])){
 	$createtime=date("Y-m-d H:i:s");	
 	$look=1;//获取回复留言时间
 	if(mysql_query("insert into tb_replyword (userid,createtimes,titles,contents,leave_id,look)values('$userid','$createtime','".$_POST['title']."','$content','".$_POST['t_id']."','$look')")){
-	   echo "<script>alert('^_^，回复成功');window.location.href=document.referrer;</script>";//返回上一级页面并刷新
+	   echo "<script>alert('^_^，回复成功');window.location.href=document.referrer;</script>";
 	}else{
 	   echo "<script>alert('难过(ಥ﹏ಥ)，回复失败');history.back();</script>";
 	}

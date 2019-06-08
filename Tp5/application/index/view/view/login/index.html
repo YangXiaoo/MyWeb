@@ -1,0 +1,66 @@
+{extend name="public/base" /}
+
+{block name="reg"}
+<title>注册</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+{/block}
+
+{block name="pjax_container"}
+<section class="content">
+    <div class="row">
+        <div class="col-sm-8">
+        <div class="alert bg-white position"><a href="/"><i class="fa fa-home"></i> 首页</a><span>></span><a>注册</a>
+        </div>
+            <div class="bg-white view-page reg">
+                <h3 class="title" align="center">注册<small>已有帐号？点击<a href="{:url('Login/login')}">登录</a></small></h3>
+                
+                <form class="form-horizontal" method="POST" action="{:url('Login/reg')}" onsubmit="return false" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-7"><input class="form-control" name="username" placeholder="用户名"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-7"><input class="form-control" name="password" placeholder="密码" type="password"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">确认密码</label>
+                        <div class="col-sm-7"><input class="form-control" name="repassword" placeholder="确认密码" type="password"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">邮箱</label>
+                        <div class="col-sm-7"><input class="form-control" name="email" placeholder="邮箱"></div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-3 control-label">验证码</label>
+                        <div class="col-sm-7">
+                            <div class="col-lg-8 col-xs-6" style="padding-left:0;"><input class="form-control" name="code" placeholder="验证码"></div>
+                            <div class="col-lg-4 col-xs-6" style="padding:0;">
+                                <img src="{:captcha_src()}" id="code" alt="验证码" onclick="this.src='{:captcha_src()}?rnd='+Math.random();" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group pull-right">
+                                <button type="submit" class="btn btn-info pull-right login-btn" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 注册">注册</button>
+                            </div>
+                            <div class="btn-group pull-left">
+                                <button type="reset" class="btn btn-warning">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        
+        <div class="col-sm-4 hidden-xs">
+            {include file="inc/arc_hot" /}
+            {include file="inc/arc_category" /}
+            {include file="inc/flink" /}
+        </div>
+    </div>
+</section>
+{/block}

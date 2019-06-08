@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jack</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tp5简易留言板</title>
+  
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">  
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+   
+</head>
+<body>
+  <div  class="container">   
+<h2><a href="{$Think.server.script_name}/index/bbs/show/">Tp5简易留言板</a></h2>
+  
+  <a href="https://api.weibo.com/oauth2/authorize?client_id=2078783153&response_type=code&redirect_uri=http://open.gaoxueya.com/tp5/public/index/api/weibo">微博登录-链接演示</a>
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    {$data.name} 你好！
+  </div>
+  <div class="panel-footer">原来你来自：{$data.location} ^_^<br>
+  id:{$data.u_id},{$data.sina_id},{$data.uid}{$sina_id}</div>
+</div>
+
+ 
+<div class="panel panel-default">
+  <div class="panel-body">
+    原来你长的这么好看！
+  </div>
+  <div class="panel-footer"><img src="{$data.avatar_hd}" /></div>
+</div>
+ 
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success">{$data.name}</li>
+  <li class="list-group-item list-group-item-info">{$data.location}</li>
+  <li class="list-group-item list-group-item-warning">微博号：{$data.weihao}</li>
+  <li class="list-group-item list-group-item-danger">关注：{$data.followers_count}</li>
+</ul>
+</div><div> 
+
+ <footer class="bs-docs-footer " style="
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    margin-bottom: 0px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+    display: none;
+    ">
+</footer>
+ </div>
+
+ </body>
+ </html>

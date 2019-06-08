@@ -1,0 +1,5 @@
+<?php
+$conn = mysqli_connect('qdm21208779.my3w.com', 'qdm21208779', 'Ab127000' );//面向过程是mysql的增进版本
+mysqli_select_db($conn,'qdm21208779_db');
+mysqli_set_charset($conn,'utf8');
+?>

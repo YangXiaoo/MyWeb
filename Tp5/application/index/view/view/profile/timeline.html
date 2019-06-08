@@ -1,0 +1,70 @@
+{extend name="public/new" /}
+
+{block name="title"}
+<title>{:confv('title')}</title>
+<meta name="keywords" content="{:confv('keywords')}">
+<meta name="description" content="{:confv('description')}">
+<meta property="wb:webmaster" content="44e776a059a7b560" />
+{/block}
+
+{block name="pjax_container"}
+<section class="content">
+<div class="row">
+<div class="col-sm-8">
+<div class="alert bg-white position"><a href="{:url('Profile/index/'.session('oId'))}"><i class="fa fa-home"></i> 个人主页</a><span>></span><a>时间轴</a>
+        </div>             
+              <div class="tab-pane" id="timeline">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  {volist name="dataList" id="vo"}
+                  <!--<li class="time-label">
+                        <span class="bg-red">
+                          {$vo.date}
+                        </span>
+                  </li>-->
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="{$vo.icon}"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> {$vo.create_time|time_line}</span>
+
+                      <h3 class="timeline-header">
+                        {switch name="$vo.action"}
+                        {case value="6|10"}
+                        <a href="{:url('Profile/index/'.$vo.ruid)}" target="_blank" >{$vo.oname}{/case}
+                        {default /}
+                        <a href="javascript:void(0);"><span>你</span>
+                        {/switch}
+                        </a>
+                        {$vo.description}</h3>
+                      {notempty name="$vo.content"}
+                      <div class="timeline-body">
+                        {$vo.content}
+                      </div>
+                      {/notempty}
+                      {notempty name="$vo.link"}
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs" href="{$vo.link}" target="_blank" >查看</a>
+                        <!--<a class="btn btn-danger btn-xs">Delete</a>-->
+                      </div>
+                      {/notempty}
+                    </div>
+                  </li>
+                  {/volist}
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                  {$dataList->render()}
+                </ul>
+              </div>
+              </div>
+<div class="col-sm-4 hidden-xs">
+{include file="profile/hot_article" \}
+</div>
+</div>
+</section>
+{/block}

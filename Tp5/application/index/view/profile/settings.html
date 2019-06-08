@@ -1,0 +1,63 @@
+<div class="tab-pane" id="settings">
+  <form class="form-horizontal" method="POST" action="{:url('Profile/edit')}" onsubmit="return false">
+    <input type="hidden" name="uid" value="{$userid}">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-7">
+        <input type="email" class="form-control" value="{$profiledata.email}"  name="email" placeholder="邮箱">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Education</label>
+
+      <div class="col-sm-7">
+        <input type="text" class="form-control" name="education" value="{$profiledata.education}" placeholder="教育背景">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Location</label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control"  name="location" value="{$profiledata.location}" placeholder="地址">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Skills</label>
+
+      <div class="col-sm-7">
+        <input type="text" class="form-control" name="skills" value="{$profiledata.skills}" placeholder="技能">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Notes</label>
+
+      <div class="col-sm-7">
+        <textarea class="form-control"  name="notes" placeholder="简介,不超过100字"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Occupation</label>
+
+      <div class="col-sm-7">
+        <input type="text" class="form-control" name="occupation" value="{$profiledata.occupation}" placeholder="职业">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">qq</label>
+
+      <div class="col-sm-7">
+        <input type="text" class="form-control" name="qq" value="{$profiledata.qq}" placeholder="qq号码">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7">
+        <div class="btn-group pull-right">
+          <button type="submit" class="btn btn-info pull-right submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+        </div>
+        <div class="btn-group pull-left">
+          <button type="reset" class="btn btn-warning">{$Think.lang.reset}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

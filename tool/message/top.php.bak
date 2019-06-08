@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>留言板</title>
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+<link href="patch.css" rel="stylesheet">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css" >
+<!-- jquery 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/jquery-3.2.1.min.js" ></script>
+<!--  Bootstrap 核心 JavaScript 文件 -->
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js" "></script>
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">首页</a></li>
+  <li role="presentation"><a href="#">发表留言</a></li>
+   <li role="presentation"><a href="#">查看留言</a></li>
+    <li role="presentation"><a href="#">查询留言</a></li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+     欢迎： <?php echo $_SESSION['$Username']?><span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      ...
+    </ul>
+  </li>
+</ul>
+
+
+
+
+</div>
+</body>
+</html>

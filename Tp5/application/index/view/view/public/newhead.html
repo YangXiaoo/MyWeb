@@ -1,0 +1,170 @@
+{if ISPJAX != 1 }
+<header class="main-header">
+    <a href="/" class="logo hidden-xs">
+        <span class="logo-mini"><i class="fa fa-home"></i></span>
+        <span class="logo-lg"><i class="fa fa-home"></i></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        {php}
+        $userid = session('webuserId');
+        if(empty($userid)){
+        {/php}
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">登陆</a>
+                    <ul class="dropdown-menu" >
+                        <form action="{:url('Login/checkLogin')}" method="POST" class="no-padding" onsubmit="return false" >
+                            <li class="user-header" style="background-color:#ffffff;">
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input class="form-control" placeholder="用户名" name="username" type="text">
+                                </div>
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    <input class="form-control" placeholder="密码" name="password" type="password">
+                                </div>
+                                <div class="input-group" style="margin-bottom:10px;">
+                                    <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                                    <div class="row">
+                                    <div class="col-sm-6">
+                                    <input class="form-control" name="code" placeholder="验证码">
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <img src="{:captcha_src()}" id="code" alt="验证码" onclick="this.src='{:captcha_src()}?rnd='+Math.random();" />
+                                    </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="user-body">
+                                <button type="submit" class="btn btn-block btn-info login-btn" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; 登陆">登陆</button>
+                            </li><br>
+                            <li class="user-footer">
+                                <span>第三方登录</span>
+                                <!--<a href="{:url('Login/qqconnet')}" class="third-way">
+                                    <i class="fa fa-qq"></i>
+                                    <span class="bg qq"></span>
+                                </a>-->
+                                <a href="https://api.weibo.com/oauth2/authorize?client_id=2820019779&response_type=code&redirect_uri=http://www.lxxx.site/Tp5-TuFanInc-Admin-master/public/index/api/weibo" style="color:#ff0000;}">&nbsp;<i class="fa fa-weibo"></i></a>
+                                <a href="{:url('Login/qqconnect')}" class="third-way" style="color:#0099ff">
+                                    <i class="fa fa-qq"></i>
+                                    <span class="bg qq"></span>
+                                </a>
+                                <a href="{:url('Login/index')}" class="third-way pull-right" style="color:#0066ff">注册</a>
+                            </li>
+                        </form>
+                    </ul>
+
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+        {php}
+        }else{
+        {/php}
+         <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu">
+                        <a href="/" target="_blank" >{$Think.lang.web_home}</a>
+                    </li>
+                    <li class="dropdown user user-menu">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{:cookie('webavatar')}" class="user-image">
+                            <span class="hidden-xs">{:cookie('webname')}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img src="{:cookie('webavatar')}" class="img-circle">
+                                <p>{:cookie('webname')}<small>Try yourself!</small></p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left"><a href="{:url('Profile/index/'.session('webuserId'))}" target="_blank"  class="btn btn-default btn-flat">个人设置</a></div>
+                                <div class="pull-right"><a href="{:url('Login/loginOut')}" class="btn btn-default btn-flat">退出</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                    <a href="javascript:void(0);" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        {php}
+        }{/php}
+
+    </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="image">
+                <img src="{:cookie('oavatar')}" class="img-circle" alt="User Image">
+            </div>
+            <div class="info">{:cookie('ousername')}</div>
+        </div>
+        
+        <form action="{:url('Search/other')}" method="GET" class="sidebar-form" pjax-search="" >
+            <div class="input-group">
+                <input type="text" name="k" class="form-control" placeholder="输入关键词搜索..." />
+                <span class="input-group-btn">
+                    <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <ul class="sidebar-menu">
+            <li class="treeview"><a href="{:url('Profile/index/'.session('oId'))}"><i class="fa fa-home"></i> <span>个人主页</span></a></li>
+            <li class="treeview">
+                <a href="javascript:void(0);">
+                    <i class="fa fa-list"></i><span>文章分栏</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                {notempty name=":usermenu()"}
+                <ul class="treeview-menu">
+                {volist name=":usermenu()" id="vo"}
+                    <li><a href="{$vo.typelink}"><i class="fa fa-circle-o"></i><span>{$vo.typename}</span></a></li>
+                {/volist}
+                </ul>
+                {/notempty}
+                {empty name=":usermenu()"}
+                <ul class="treeview-menu">
+                <li><a href="javascript:void(0);"><i class="fa fa-circle-o"></i><span>没有写</span></a></li>
+                </ul>
+                {/empty}
+            </li>
+            <li class="treeview">
+                <a href="{:url('Profile/info')}"><i class="fa fa-file-text"></i><span>关于我</span><span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span></a>
+                {if condition="session('oId') eq session('webuserId')"}
+                <ul class="treeview-menu">
+                    <li><a href="{:url('Profile/info')}"><i class="fa fa-circle-o"></i><span>个人信息</span></a></li>
+                    <li><a href="{:url('Profile/edit')}"><i class="fa fa-circle-o"></i>修改资料</a></li>
+                    <li><a href="{:url('Profile/timeline')}"><i class="fa fa-circle-o"></i>时间轴</a></li>                  
+                </ul>
+                {/if}
+            </li>
+            {if condition="session('oId') eq session('webuserId')"}
+            <li class="treeview">
+                <a href="javascript:void(0);">
+                    <i class="fa fa-clipboard"></i><span>文章管理</span><span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="{:url('Arctype/index')}">
+                        <i class="fa fa-circle-o"></i><span>文章分类</span></a></li>
+                    <li><a href="{:url('Archive/index')}">
+                        <i class="fa fa-circle-o"></i><span>文章列表</span></a></li>
+                </ul>
+            </li>
+            {/if}
+        </ul>
+    </section>
+</aside>
+{/if}

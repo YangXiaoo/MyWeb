@@ -1,0 +1,20 @@
+<div class="box box-solid hot">
+    <div class="box-header with-border"><h3 class="box-title"><i class="fa fa-fire"></i> 热门文章</h3></div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            {volist name=":atc(5,'click DESC')" id="vo" key="k"}
+            <li>
+                <a href="{$vo.arcurl}">
+                    <span class="label 
+                    {eq name="k" value="1"}bg-red{/eq}
+                    {eq name="k" value="2"}bg-orange{/eq}
+                    {eq name="k" value="3"}bg-green{/eq}
+                    {eq name="k" value="4"}bg-aqua{/eq}
+                    {eq name="k" value="5"}bg-teal{/eq}
+                    ">{$k}</span> {$vo.title}
+                </a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
